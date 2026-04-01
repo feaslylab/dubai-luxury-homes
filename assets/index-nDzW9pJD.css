@@ -104,7 +104,14 @@ section.relative.h-screen {
   max-height: 800px !important;
 }
 
-/* Glass box — responsive sizing */
-.max-w-2xl {
-  max-width: min(90vw, 32rem) !important;
+
+/* Hero text — compact, 2 lines max */
+section.relative.h-screen h1 {
+  font-size: clamp(1.2rem, 2.5vw, 2rem) !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.3 !important;
+}
+section.relative.h-screen p {
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem) !important;
+  margin-bottom: 0.5rem !important;
 }
