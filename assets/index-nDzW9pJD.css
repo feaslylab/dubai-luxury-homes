@@ -45,43 +45,58 @@ section.relative.h-screen {
   height: 85vh !important;
 }
 
-/* Refined hero buttons */
-.btn-gold-solid.rounded-full {
-  background: linear-gradient(135deg, #c4a265 0%, #d4b275 50%, #c4a265 100%) !important;
-  color: #0a0a0a !important;
-  border: none !important;
-  box-shadow: 0 4px 15px rgba(196, 162, 101, 0.3), inset 0 1px 0 rgba(255,255,255,0.2) !important;
-  transition: all 0.3s ease !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.15em !important;
-}
-.btn-gold-solid.rounded-full:hover {
-  box-shadow: 0 6px 20px rgba(196, 162, 101, 0.5), inset 0 1px 0 rgba(255,255,255,0.3) !important;
-  transform: translateY(-1px) !important;
-}
 
-/* WhatsApp button — green 3D */
-a[href*="wa.me"].rounded-full {
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
-  color: #fff !important;
-  border: none !important;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3), inset 0 1px 0 rgba(255,255,255,0.2) !important;
-  transition: all 0.3s ease !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.15em !important;
-}
-a[href*="wa.me"].rounded-full:hover {
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), inset 0 1px 0 rgba(255,255,255,0.3) !important;
-  transform: translateY(-1px) !important;
-}
+/* === REFINED BUTTONS === */
 
-/* Navbar contact button - sleek */
+/* All gold buttons: sleek, thin, refined */
 .btn-gold-solid {
-  background: linear-gradient(135deg, #c4a265 0%, #d4b275 50%, #c4a265 100%) !important;
-  box-shadow: 0 2px 10px rgba(196, 162, 101, 0.2), inset 0 1px 0 rgba(255,255,255,0.15) !important;
+  background: transparent !important;
+  color: #c4a265 !important;
+  border: 1px solid #c4a265 !important;
+  border-radius: 9999px !important;
+  padding: 0.6rem 2rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
   transition: all 0.3s ease !important;
+  box-shadow: 0 0 20px rgba(196,162,101,0.1) !important;
 }
 .btn-gold-solid:hover {
-  box-shadow: 0 4px 15px rgba(196, 162, 101, 0.4), inset 0 1px 0 rgba(255,255,255,0.25) !important;
-  transform: translateY(-1px) !important;
+  background: rgba(196,162,101,0.1) !important;
+  box-shadow: 0 0 30px rgba(196,162,101,0.2) !important;
+}
+
+/* Gold outline buttons */
+.btn-gold {
+  border: 1px solid rgba(196,162,101,0.4) !important;
+  border-radius: 9999px !important;
+  padding: 0.6rem 2rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  transition: all 0.3s ease !important;
+}
+.btn-gold:hover {
+  border-color: #c4a265 !important;
+  background: rgba(196,162,101,0.1) !important;
+}
+
+/* WhatsApp hero button — subtle, not green */
+a[href*="wa.me"].rounded-full {
+  background: transparent !important;
+  color: #25D366 !important;
+  border: 1px solid #25D366 !important;
+  border-radius: 9999px !important;
+  padding: 0.6rem 2rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.2em !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 0 20px rgba(37,211,102,0.1) !important;
+}
+a[href*="wa.me"].rounded-full:hover {
+  background: rgba(37,211,102,0.1) !important;
+  box-shadow: 0 0 30px rgba(37,211,102,0.2) !important;
 }
