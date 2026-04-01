@@ -115,3 +115,18 @@ section.relative.h-screen p {
   font-size: clamp(0.75rem, 1.2vw, 0.95rem) !important;
   margin-bottom: 0.5rem !important;
 }
+
+
+/* Golden Visa + all page heroes — blur fade bottom edge into next section */
+section.relative.h-screen::after,
+section.relative.min-h-screen::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--background, #0a0a0a));
+  z-index: 5;
+  pointer-events: none;
+}
