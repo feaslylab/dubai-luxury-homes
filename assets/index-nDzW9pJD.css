@@ -142,7 +142,7 @@ section::before {
   top: -2px;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 150px;
   background: linear-gradient(to bottom, var(--background, #0a0a0a), transparent);
   z-index: 4;
   pointer-events: none;
@@ -163,5 +163,10 @@ section::after {
 section.relative.h-screen::after,
 section.relative.min-h-screen::after {
   height: 120px;
+  z-index: 5;
+}
+section.relative.h-screen::before,
+section.relative.min-h-screen::before {
+  height: 200px;
   z-index: 5;
 }
