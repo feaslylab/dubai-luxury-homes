@@ -12,3 +12,29 @@ video[autoplay] {
   opacity: 0.7;
   filter: saturate(0.8);
 }
+
+/* Glass morphism panel - hero text overlay */
+.bg-black\/70 {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+.backdrop-blur-2xl {
+  -webkit-backdrop-filter: blur(40px) !important;
+  backdrop-filter: blur(40px) !important;
+}
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+.py-14 {
+  padding-top: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
+}
+.px-12 {
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+.border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+.rounded-2xl {
+  border-radius: 1rem !important;
+}
