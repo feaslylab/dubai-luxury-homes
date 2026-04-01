@@ -39,11 +39,6 @@ video[autoplay] {
   border-radius: 1rem !important;
 }
 
-/* Hero section height override */
-section.relative.h-screen {
-  max-height: 85vh !important;
-  height: 85vh !important;
-}
 
 
 /* === REFINED BUTTONS === */
@@ -99,4 +94,17 @@ a[href*="wa.me"].rounded-full {
 a[href*="wa.me"].rounded-full:hover {
   background: rgba(37,211,102,0.1) !important;
   box-shadow: 0 0 30px rgba(37,211,102,0.2) !important;
+}
+
+
+/* Hero section — adaptive height */
+section.relative.h-screen {
+  height: 70vh !important;
+  min-height: 500px !important;
+  max-height: 800px !important;
+}
+
+/* Glass box — responsive sizing */
+.max-w-2xl {
+  max-width: min(90vw, 32rem) !important;
 }
