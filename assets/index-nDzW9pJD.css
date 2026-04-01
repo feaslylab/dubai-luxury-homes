@@ -130,3 +130,38 @@ section.relative.min-h-screen::after {
   z-index: 5;
   pointer-events: none;
 }
+
+
+/* Universal section blending — every section fades into the next */
+section {
+  position: relative;
+}
+section::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--background, #0a0a0a), transparent);
+  z-index: 4;
+  pointer-events: none;
+}
+section::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--background, #0a0a0a));
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Stronger blend on hero sections (already set, reinforce) */
+section.relative.h-screen::after,
+section.relative.min-h-screen::after {
+  height: 120px;
+  z-index: 5;
+}
