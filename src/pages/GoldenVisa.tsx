@@ -2,18 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
-  Award,
   Clock,
   Users,
   Shield,
   Globe,
-  Briefcase,
   Heart,
   CheckCircle,
-  FileText,
   Home,
-  GraduationCap,
-  Phone,
   ArrowRight,
   MessageCircle,
 } from 'lucide-react';
@@ -40,22 +35,6 @@ const GoldenVisa = () => {
       duration: t('whatsapp.hc.visaDuration10'),
       description: t('whatsapp.hc.visaProp'),
       color: 'from-gold to-gold-light',
-    },
-    {
-      icon: <Briefcase className="w-8 h-8" />,
-      title: t('whatsapp.hc.investFund'),
-      amount: t('whatsapp.hc.visaAmount2m'),
-      duration: t('whatsapp.hc.visaDuration10'),
-      description: t('whatsapp.hc.visaFund'),
-      color: 'from-blue-500 to-blue-600',
-    },
-    {
-      icon: <GraduationCap className="w-8 h-8" />,
-      title: t('whatsapp.hc.gvEntrepreneur'),
-      amount: t('whatsapp.hc.gvEntrepreneurAmt'),
-      duration: t('whatsapp.hc.visaDuration5'),
-      description: t('whatsapp.hc.gvEntrepreneurDesc'),
-      color: 'from-purple-500 to-purple-600',
     },
   ];
 
@@ -194,7 +173,7 @@ const GoldenVisa = () => {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="max-w-lg mx-auto"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, staggerChildren: 0.2 }}
@@ -374,131 +353,6 @@ const GoldenVisa = () => {
         </div>
       </section>
 
-      {/* ========== OFFICIAL CONTACTS ========== */}
-      <section className="py-20 bg-gradient-to-r from-gold/10 via-gold/5 to-transparent">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="section-heading">
-              {t('whatsapp.hc.gvContactTitle')}
-            </h2>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-              {t('whatsapp.hc.gvContactSubtitle')}
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* GDRFA Dubai */}
-            <motion.div
-              className="card-luxury p-8 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center text-gold mx-auto mb-6">
-                <Phone size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-gold mb-2">
-                {t('whatsapp.hc.gvContactGDRFA')}
-              </h3>
-              <p className="text-text-secondary text-sm mb-4">
-                {t('whatsapp.hc.gvContactGDRFADesc')}
-              </p>
-              <div className="space-y-2">
-                <p className="text-text-primary font-medium">
-                  {t('whatsapp.hc.gvContactTollFree')}:{' '}
-                  <a href="tel:8005111" className="text-gold hover:text-gold-light">
-                    800 5111
-                  </a>
-                </p>
-                <p className="text-text-primary font-medium">
-                  {t('whatsapp.hc.gvContactIntl')}:{' '}
-                  <a href="tel:+97143139999" className="text-gold hover:text-gold-light">
-                    +971 4 313 9999
-                  </a>
-                </p>
-                <p className="text-gold text-xs font-medium mt-2 bg-gold/10 rounded-full px-3 py-1 inline-block">
-                  {t('whatsapp.hc.gvContact247')}
-                </p>
-              </div>
-            </motion.div>
-
-            {/* ICP Federal */}
-            <motion.div
-              className="card-luxury p-8 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center text-gold mx-auto mb-6">
-                <Users size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-gold mb-2">
-                {t('whatsapp.hc.gvContactICP')}
-              </h3>
-              <p className="text-text-secondary text-sm mb-4">
-                {t('whatsapp.hc.gvContactICPDesc')}
-              </p>
-              <p className="text-text-primary font-medium text-lg">
-                600 522 222
-              </p>
-              <a
-                href="https://icp.gov.ae"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gold hover:text-gold-light text-sm mt-2 inline-block"
-              >
-                icp.gov.ae
-              </a>
-            </motion.div>
-
-            {/* Official Portal */}
-            <motion.div
-              className="card-luxury p-8 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center text-gold mx-auto mb-6">
-                <Heart size={28} />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-gold mb-2">
-                {t('whatsapp.hc.gvContactWebsite')}
-              </h3>
-              <p className="text-text-secondary text-sm mb-4">
-                {t('whatsapp.hc.gvContactWebsiteDesc')}
-              </p>
-              <div className="space-y-2">
-                <a
-                  href="https://gdrfad.gov.ae"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gold hover:text-gold-light font-medium block"
-                >
-                  gdrfad.gov.ae
-                </a>
-                <a
-                  href="https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/golden-visa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gold hover:text-gold-light font-medium block"
-                >
-                  u.ae
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* ========== PROCESS TIMELINE ========== */}
       <section className="py-16 md:py-24 lg:py-32 bg-elevated">
         <div className="max-w-4xl mx-auto px-6">
@@ -591,87 +445,6 @@ const GoldenVisa = () => {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ========== REQUIRED DOCUMENTS ========== */}
-      <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-r from-gold/10 via-gold/5 to-transparent">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-6">
-              {t('whatsapp.hc.reqDocs')}
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-              {/* Personal Documents */}
-              <div className="space-y-4">
-                <h3 className="text-xl font-serif font-bold text-text-primary mb-4">
-                  {t('whatsapp.hc.personalDocs')}
-                </h3>
-                {[
-                  t('whatsapp.hc.gvDocPassport'),
-                  t('whatsapp.hc.gvDocPhotos'),
-                  t('whatsapp.hc.gvDocMedical'),
-                  t('whatsapp.hc.gvDocPolice'),
-                ].map((doc, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start space-x-3 p-3 rounded-lg"
-                    style={{
-                      background: 'rgba(201,169,110,0.05)',
-                      border: '1px solid rgba(201,169,110,0.08)',
-                    }}
-                  >
-                    <FileText
-                      className="flex-shrink-0 mt-0.5"
-                      style={{ color: '#c9a96e' }}
-                      size={20}
-                    />
-                    <span className="text-text-secondary leading-relaxed">
-                      {doc}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Financial Documents */}
-              <div className="space-y-4">
-                <h3 className="text-xl font-serif font-bold text-text-primary mb-4">
-                  {t('whatsapp.hc.financialDocs')}
-                </h3>
-                {[
-                  t('whatsapp.hc.gvDocInvestment'),
-                  t('whatsapp.hc.gvDocBank'),
-                  t('whatsapp.hc.gvDocInsurance'),
-                  t('whatsapp.hc.gvDocForms'),
-                ].map((doc, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start space-x-3 p-3 rounded-lg"
-                    style={{
-                      background: 'rgba(201,169,110,0.05)',
-                      border: '1px solid rgba(201,169,110,0.08)',
-                    }}
-                  >
-                    <FileText
-                      className="flex-shrink-0 mt-0.5"
-                      style={{ color: '#c9a96e' }}
-                      size={20}
-                    />
-                    <span className="text-text-secondary leading-relaxed">
-                      {doc}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 

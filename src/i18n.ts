@@ -177,12 +177,12 @@ const resources = {
         benefits: {
           title: 'Beneficios de la Golden Visa',
           items: [
-            'Residencia de larga duración (5-10 años)',
-            'Renovación automática',
-            'Patrocinio para familia',
-            'Sin necesidad de patrocinador local',
-            'Salidas múltiples sin restricciones',
-            'Acceso a servicios de alta calidad',
+            'Residencia de larga duración de 10 años en Dubái, con visa renovable mientras se mantenga la inversión',
+            'Renovación automática y sencilla, manteniendo la inversión en activo inmobiliario',
+            'Patrocinio familiar, incluyendo miembros de primer grado, permitiéndote establecerte con tu familia',
+            'Sin patrocinador local, independencia total para vivir y gestionar tus activos en Dubái',
+            'Movilidad internacional sin restricciones de entrada y salida',
+            'Acceso a educación, salud y calidad de vida de primer nivel en una de las ciudades más innovadoras',
           ],
         },
         process: {
@@ -746,12 +746,12 @@ const resources = {
         benefits: {
           title: 'Golden Visa Benefits',
           items: [
-            'Long-term residency (5-10 years)',
-            'Automatic renewal',
-            'Family sponsorship',
-            'No need for local sponsor',
-            'Multiple exits without restrictions',
-            'Access to high-quality services',
+            '10-year long-duration residency in Dubai, with a renewable visa while maintaining your investment',
+            'Simple automatic renewal, keeping your investment in active real estate',
+            'Family sponsorship including first-degree family members, allowing you to settle with your family',
+            'No local sponsor required — complete independence to live and manage your assets in Dubai',
+            'International mobility with no entry or exit restrictions',
+            'Access to first-class education, healthcare and quality of life in one of the world\'s most innovative cities',
           ],
         },
         process: {
