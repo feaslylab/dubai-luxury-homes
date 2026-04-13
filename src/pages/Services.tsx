@@ -1,328 +1,317 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  Search, 
-  TrendingUp, 
-  Settings, 
-  Shield, 
-  FileText, 
-  Calculator,
-  Users,
+import {
+  Home,
+  Building2,
+  Clock,
+  TrendingUp,
+  Shield,
+  Palmtree,
+  Globe,
   Award,
-  ArrowRight 
+  Wrench,
+  Armchair,
+  ArrowRight,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import ContactModal from '../components/ContactModal';
+
+function assetPath(path: string) {
+  return `/dubai-luxury-homes/${path.startsWith('/') ? path.slice(1) : path}`;
+}
 
 const Services = () => {
   const { t } = useTranslation();
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  const services = [
+  const categories = [
     {
-      icon: Search,
-      title: t('propertyConsultation'),
-      description: 'Expert guidance in selecting the perfect luxury property that aligns with your investment goals and lifestyle preferences.',
-      features: [
-        'Market Analysis & Research',
-        'Property Viewing & Tours',
-        'Location Assessment',
-        'Price Negotiation Support'
+      title: t('services.categories.sales'),
+      description: t('whatsapp.hc.catSales'),
+      services: [
+        {
+          icon: <Home className="w-8 h-8" />,
+          title: t('services.list.residentialSales.title'),
+          description: t('services.list.residentialSales.description'),
+          image: assetPath('images/WhatsApp-Image-2025-10-06-at-1.22.20-PM.jpeg'),
+        },
+        {
+          icon: <Building2 className="w-8 h-8" />,
+          title: t('services.list.commercialSales.title'),
+          description: t('services.list.commercialSales.description'),
+          image: assetPath('images/7-Things-You-Need-to-Know-About-Commercial-Real-Estate-1024x683.jpg'),
+        },
+        {
+          icon: <Clock className="w-8 h-8" />,
+          title: t('services.list.offPlan.title'),
+          description: t('services.list.offPlan.description'),
+          image: assetPath('images/1680684458222.png'),
+        },
+        {
+          icon: <TrendingUp className="w-8 h-8" />,
+          title: t('services.list.advisory.title'),
+          description: t('services.list.advisory.description'),
+          image: assetPath('images/two-business-partnership-coworkers-analysis-strategy-with-discussing-picture-id1215053535.jpg'),
+        },
       ],
-      color: 'from-blue-500 to-blue-600'
     },
     {
-      icon: TrendingUp,
-      title: t('investmentAnalysis'),
-      description: 'Comprehensive financial analysis to ensure your Dubai real estate investment delivers optimal returns.',
-      features: [
-        'ROI Calculations',
-        'Market Trend Analysis',
-        'Risk Assessment',
-        'Portfolio Diversification'
+      title: t('services.categories.leasing'),
+      description: t('whatsapp.hc.catLeasing'),
+      services: [
+        {
+          icon: <Building2 className="w-8 h-8" />,
+          title: t('services.list.leasing.title'),
+          description: t('services.list.leasing.description'),
+          image: assetPath('images/what-is-a-lease-agreement-for-a-house-1024x643.jpg'),
+        },
+        {
+          icon: <Shield className="w-8 h-8" />,
+          title: t('services.list.management.title'),
+          description: t('services.list.management.description'),
+          image: assetPath('images/queenstown-property-management-home-1024x683.jpg'),
+        },
+        {
+          icon: <Palmtree className="w-8 h-8" />,
+          title: t('services.list.holidayHomes.title'),
+          description: t('services.list.holidayHomes.description'),
+          image: assetPath('images/The-Palace-Downtown-Dubai-006168-04-hotel-grounds-walkway.jpg'),
+        },
       ],
-      color: 'from-green-500 to-green-600'
     },
     {
-      icon: Settings,
-      title: t('propertyManagement'),
-      description: 'End-to-end property management services to maximize your rental income and maintain your investment.',
-      features: [
-        'Tenant Management',
-        'Maintenance Coordination',
-        'Rental Collection',
-        'Property Marketing'
+      title: t('services.categories.lifestyle'),
+      description: t('whatsapp.hc.catLifestyle'),
+      services: [
+        {
+          icon: <Globe className="w-8 h-8" />,
+          title: t('services.list.relocation.title'),
+          description: t('services.list.relocation.description'),
+          image: assetPath('images/1708062446_Relocation-Assistance-1024x682.jpg'),
+        },
+        {
+          icon: <Award className="w-8 h-8" />,
+          title: t('services.list.goldenVisa.title'),
+          description: t('services.list.goldenVisa.description'),
+          image: assetPath('images/golden-visa-premium.jpg'),
+        },
+        {
+          icon: <Wrench className="w-8 h-8" />,
+          title: t('services.list.renovation.title'),
+          description: t('services.list.renovation.description'),
+          image: assetPath('images/before-and-after-harwick.jpg'),
+        },
+        {
+          icon: <Armchair className="w-8 h-8" />,
+          title: t('services.list.furnishing.title'),
+          description: t('services.list.furnishing.description'),
+          image: assetPath('images/how-to-furnish-rental-property.jpg'),
+        },
       ],
-      color: 'from-purple-500 to-purple-600'
     },
-    {
-      icon: Shield,
-      title: t('legalSupport'),
-      description: 'Complete legal assistance throughout your property transaction and Golden Visa application process.',
-      features: [
-        'Contract Review',
-        'Legal Documentation',
-        'Visa Application Support',
-        'Compliance Guidance'
-      ],
-      color: 'from-gold to-gold-light'
-    }
   ];
 
-  const additionalServices = [
-    {
-      icon: FileText,
-      title: 'Golden Visa Services',
-      description: 'Comprehensive support for UAE Golden Visa applications through real estate investment',
-      link: '/golden-visa'
-    },
-    {
-      icon: Calculator,
-      title: 'Mortgage Advisory',
-      description: 'Expert guidance on financing options and mortgage solutions for property purchases'
-    },
-    {
-      icon: Users,
-      title: 'Relocation Services',
-      description: 'Complete relocation assistance for international clients moving to Dubai'
-    },
-    {
-      icon: Award,
-      title: 'VIP Client Services',
-      description: 'Exclusive concierge services for high-net-worth individuals and VIP clients'
-    }
-  ];
-
-  const process = [
+  const processSteps = [
     {
       step: '01',
-      title: 'Initial Consultation',
-      description: 'Understanding your investment goals, budget, and preferences through detailed consultation.'
+      title: 'Consulta Inicial',
+      description: t('whatsapp.hc.procAnalyse'),
     },
     {
-      step: '02', 
-      title: 'Market Research',
-      description: 'Comprehensive market analysis and property selection based on your specific requirements.'
+      step: '02',
+      title: 'Estrategia Personalizada',
+      description: t('whatsapp.hc.procPlan'),
     },
     {
       step: '03',
-      title: 'Property Tours',
-      description: 'Guided property viewings and detailed inspections of shortlisted investment opportunities.'
+      title: t('whatsapp.hc.searchSelect'),
+      description: t('whatsapp.hc.procSearch'),
     },
     {
       step: '04',
-      title: 'Transaction Support',
-      description: 'End-to-end support through negotiation, legal processes, and property acquisition.'
-    }
+      title: 'Cierre y Soporte',
+      description: t('whatsapp.hc.procClose'),
+    },
   ];
 
   return (
-    <div className="pt-20">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-b from-card to-background">
-        <div className="max-w-7xl mx-auto px-4 text-center">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={assetPath('images/The-Palace-Downtown-Dubai-006168-04-hotel-grounds-walkway.jpg')}
+            alt="Dubai Services"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+        </div>
+
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-serif font-bold text-gold mb-6"
+            className="font-serif font-bold text-gold mb-6"
+            style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
           >
-            {t('servicesTitle')}
+            {t('services.hero.title')}
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-text-secondary max-w-3xl mx-auto"
-          >
-            Comprehensive luxury real estate services designed to maximize your investment success in Dubai's premium property market.
-          </motion.p>
+          <p className="text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+            {t('services.hero.subtitle')}
+          </p>
         </div>
       </section>
 
-      {/* Main Services */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="section-heading">Core Services</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              Our comprehensive suite of services covers every aspect of luxury real estate investment
-            </p>
-          </motion.div>
+      {/* Service Categories */}
+      {categories.map((category, catIndex) => (
+        <section
+          key={catIndex}
+          className={`py-20 ${catIndex % 2 === 0 ? 'bg-background' : 'bg-elevated'}`}
+        >
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gold mb-6">
+                {category.title}
+              </h2>
+              <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+                {category.description}
+              </p>
+            </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="card-luxury p-8 group"
-              >
-                <div className="flex items-start space-x-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                    <service.icon className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-serif font-bold text-gold mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-text-secondary mb-6 leading-relaxed">
-                      {service.description}
-                    </p>
-                    
-                    <div className="space-y-3">
-                      {service.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center space-x-3">
-                          <div className="w-2 h-2 bg-gold rounded-full flex-shrink-0"></div>
-                          <span className="text-text-secondary text-sm">{feature}</span>
-                        </div>
-                      ))}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 gap-8"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, staggerChildren: 0.2 }}
+              viewport={{ once: true }}
+            >
+              {category.services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  className="card-luxury overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-48 luxury-image group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-gold bg-black/50 backdrop-blur-sm rounded-lg p-3">
+                      {service.icon}
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+
+                  <div className="p-6">
+                    <h3 className="text-xl font-serif font-bold text-gold mb-3 leading-tight">
+                      {service.title}
+                    </h3>
+                    <p className="text-text-secondary leading-relaxed mb-4">
+                      {service.description}
+                    </p>
+                    <Link
+                      to="/contacto"
+                      className="text-gold hover:text-gold-light transition-colors duration-300 inline-flex items-center space-x-1 font-medium"
+                    >
+                      <span>{t('whatsapp.hc.moreInfo')}</span>
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
       {/* Process Section */}
-      <section className="py-24 bg-card">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-r from-gold/10 via-gold/5 to-transparent">
+        <div className="container mx-auto px-4">
           <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
           >
-            <h2 className="section-heading">Our Process</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              A systematic approach to ensure your real estate investment success
+            <h2 className="section-heading">{t('whatsapp.hc.ourProcess')}</h2>
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+              {t('whatsapp.hc.ourProcessDesc')}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((step, index) => (
-              <motion.div
-                key={step.step}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center relative"
-              >
-                {/* Connection Line */}
-                {index < process.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-gold to-transparent transform translate-x-4 -translate-y-1/2 z-0"></div>
-                )}
-                
-                <div className="relative z-10">
-                  <div className="w-16 h-16 bg-gold text-background font-bold text-xl rounded-full flex items-center justify-center mx-auto mb-6">
-                    {step.step}
-                  </div>
-                  <h3 className="text-xl font-serif font-bold text-gold mb-4">
-                    {step.title}
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Services */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            className="grid grid-cols-1 md:grid-cols-4 gap-8"
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, staggerChildren: 0.2 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
           >
-            <h2 className="section-heading">Additional Services</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              Complementary services to enhance your Dubai real estate investment experience
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {additionalServices.map((service, index) => (
+            {processSteps.map((step, index) => (
               <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
+                key={index}
+                className="text-center group"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-card border border-white/10 rounded-xl p-6 text-center group hover:border-gold/30 transition-all duration-300"
               >
-                <div className="w-16 h-16 bg-gold/20 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/30 transition-colors duration-300">
-                  <service.icon className="w-8 h-8 text-gold" />
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gold text-background rounded-full text-2xl font-serif font-bold mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {step.step}
                 </div>
-                <h3 className="text-lg font-serif font-bold text-gold mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {service.description}
-                </p>
+                <h3 className="text-xl font-serif font-bold text-gold mb-4">{step.title}</h3>
+                <p className="text-text-secondary leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-4">
-              Ready to Start Your Investment Journey?
-            </h2>
-            <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-              Let our experts guide you through Dubai's luxury real estate market and help you achieve your investment goals.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => setIsContactModalOpen(true)}
-                className="btn-gold-solid"
-              >
-                Schedule Consultation
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
-              <a
-                href="tel:+971545535505"
-                className="btn-gold"
-              >
-                Call Now
-              </a>
-            </div>
-          </motion.div>
+      <motion.section
+        className="py-20 bg-background"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-6">
+            {t('whatsapp.hc.readyStart')}
+          </h2>
+          <p className="text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
+            {t('whatsapp.hc.readyStartDesc')}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contacto"
+              className="btn-gold-solid text-lg px-8 py-4 inline-flex items-center space-x-2"
+            >
+              <span>{t('whatsapp.hc.contactNow')}</span>
+              <ArrowRight size={18} />
+            </Link>
+            <a
+              href="https://wa.me/971585821144"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold text-lg px-8 py-4"
+            >
+              WhatsApp
+            </a>
+          </div>
         </div>
-      </section>
-
-      {/* Contact Modal */}
-      <ContactModal 
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-      />
+      </motion.section>
     </div>
   );
 };

@@ -1,312 +1,404 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Award, Users, TrendingUp, MapPin, Clock, Shield } from 'lucide-react';
+import { Award, Globe, Shield, Settings, Star, Clock, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+
+function assetPath(path: string) {
+  return `/dubai-luxury-homes/${path.startsWith('/') ? path.slice(1) : path}`;
+}
 
 const About = () => {
   const { t } = useTranslation();
 
-  const values = [
+  const whyUsItems = [
     {
-      icon: Shield,
-      title: 'Trust & Transparency',
-      description: 'We build lasting relationships through honest communication and transparent dealings in every transaction.'
+      icon: <Award className="w-8 h-8" />,
+      title: t('about.whyUs.experience.title'),
+      description: t('about.whyUs.experience.description'),
     },
     {
-      icon: Award,
-      title: 'Excellence',
-      description: 'We maintain the highest standards in service delivery and property selection for our discerning clients.'
+      icon: <Shield className="w-8 h-8" />,
+      title: t('about.whyUs.trust.title'),
+      description: t('about.whyUs.trust.description'),
     },
     {
-      icon: Users,
-      title: 'Client-Centric',
-      description: 'Your success is our priority. We tailor our services to meet your unique investment goals and requirements.'
+      icon: <Settings className="w-8 h-8" />,
+      title: t('about.whyUs.service.title'),
+      description: t('about.whyUs.service.description'),
     },
     {
-      icon: TrendingUp,
-      title: 'Market Expertise',
-      description: 'Deep local knowledge and market insights ensure you make informed investment decisions in Dubai real estate.'
-    }
+      icon: <Globe className="w-8 h-8" />,
+      title: t('about.whyUs.spanish.title'),
+      description: t('about.whyUs.spanish.description'),
+    },
   ];
 
-  const milestones = [
-    { year: '2014', title: 'Company Founded', description: 'Established in Business Bay with a vision to serve international investors' },
-    { year: '2018', title: '500+ Happy Clients', description: 'Reached our first major milestone in client satisfaction' },
-    { year: '2020', title: 'Golden Visa Specialists', description: 'Became certified Golden Visa consultation specialists' },
-    { year: '2024', title: '1000+ Properties', description: 'Successfully facilitated over 1000 property transactions' }
+  const stats = [
+    { icon: <Globe className="w-6 h-6" />, value: '3', label: t('whatsapp.hc.aboutStat1') },
+    { icon: <Clock className="w-6 h-6" />, value: '24/7', label: t('whatsapp.hc.aboutStat2') },
+    { icon: <Star className="w-6 h-6" />, value: '98%', label: t('whatsapp.hc.aboutStat3') },
+    { icon: <ArrowRight className="w-6 h-6" />, value: '48h', label: t('whatsapp.hc.aboutStat4') },
   ];
 
   return (
-    <div className="pt-20">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-b from-card to-background">
-        <div className="max-w-7xl mx-auto px-4 text-center">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={assetPath('images/about-mission.jpg')}
+            alt="About Us"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+        </div>
+
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-serif font-bold text-gold mb-6"
+            className="font-serif font-bold text-gold mb-6 font-serif font-bold mb-6 text-gold"
+            style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
           >
-            {t('aboutTitle')}
+            {t('about.hero.title')}
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-text-secondary max-w-3xl mx-auto"
-          >
-            Your trusted partner for luxury real estate investments in Dubai, specializing in premium properties and Golden Visa services for international clients.
-          </motion.p>
+          <p className="text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+            {t('about.hero.subtitle')}
+          </p>
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* Mission Section — Image left, text right */}
+      <section className="py-24 bg-elevated">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              className="relative"
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-6">
-                Our Story
-              </h2>
-              <div className="prose prose-lg">
-                <p className="text-text-secondary mb-6 leading-relaxed">
-                  Founded in 2014 in the heart of Business Bay, Puerta del Sol Real Estate was born from a simple vision: 
-                  to provide exceptional real estate investment opportunities to international clients seeking to 
-                  establish their presence in the UAE.
-                </p>
-                <p className="text-text-secondary mb-6 leading-relaxed">
-                  With over a decade of experience in Dubai's dynamic property market, we have built our reputation 
-                  on trust, expertise, and personalized service. Our deep understanding of both local market 
-                  dynamics and international investor needs sets us apart in the luxury real estate sector.
-                </p>
-                <p className="text-text-secondary mb-6 leading-relaxed">
-                  Today, we are proud to be one of Dubai's leading luxury real estate agencies, having facilitated 
-                  over 1000 successful property transactions and helped hundreds of clients secure their UAE Golden 
-                  Visa through strategic real estate investments.
-                </p>
+              <img
+                src={assetPath('images/about-mission.jpg')}
+                alt="Our Mission"
+                className="w-full h-[500px] object-cover rounded-xl"
+                loading="lazy"
+              />
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '-16px',
+                  right: '-16px',
+                  width: '120px',
+                  height: '120px',
+                  background: 'rgba(196,162,101,0.15)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(196,162,101,0.3)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: '2rem',
+                    fontWeight: 700,
+                    color: '#c4a265',
+                    fontFamily: 'Cormorant Garamond,serif',
+                  }}
+                >
+                  12+
+                </span>
+                <span
+                  style={{
+                    fontSize: '0.7rem',
+                    color: 'rgba(255,255,255,0.7)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                  }}
+                >
+                  {t('whatsapp.hc.yearsExcellence')}
+                </span>
               </div>
             </motion.div>
-            
+
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative"
             >
-              <img
-                src="/dubai-luxury-homes/images/about-team.jpg"
-                alt="Puerta del Sol Real Estate Team"
-                className="luxury-image w-full h-[600px] rounded-xl"
-              />
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gold/20 rounded-full blur-xl"></div>
+              <h2 className="section-heading !text-left">{t('about.mission.title')}</h2>
+              <p className="text-lg text-text-secondary leading-relaxed mb-6">
+                {t('about.mission.content')}
+              </p>
+              <p className="text-text-secondary leading-relaxed">
+                {t('whatsapp.hc.aboutLong')}
+              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-24 bg-card">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* Why Choose Us */}
+      <section className="py-16 md:py-24 lg:py-32 bg-background">
+        <div className="container mx-auto px-4">
           <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
           >
-            <h2 className="section-heading">Our Values</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              The principles that guide our commitment to excellence in luxury real estate
-            </p>
+            <h2 className="section-heading">{t('about.whyUs.title')}</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, staggerChildren: 0.2 }}
+            viewport={{ once: true }}
+          >
+            {whyUsItems.map((item, index) => (
               <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                key={index}
                 className="text-center group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                <div className="w-20 h-20 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/30 transition-colors duration-300">
-                  <value.icon className="w-10 h-10 text-gold" />
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-card border border-gold/20 rounded-full text-gold mb-6 group-hover:bg-gold group-hover:text-background transition-all duration-300">
+                  {item.icon}
                 </div>
-                <h3 className="text-xl font-serif font-bold text-gold mb-4">
-                  {value.title}
-                </h3>
-                <p className="text-text-secondary leading-relaxed">
-                  {value.description}
-                </p>
+                <h3 className="text-xl font-serif font-bold text-gold mb-4">{item.title}</h3>
+                <p className="text-text-secondary leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: '10+', label: 'Years Experience' },
-              { number: '1000+', label: 'Properties Sold' },
-              { number: '500+', label: 'Happy Clients' },
-              { number: '12%', label: 'Average ROI' }
-            ].map((stat, index) => (
+      <section className="py-20 bg-gradient-to-r from-gold/10 via-gold/5 to-transparent">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, staggerChildren: 0.1 }}
+            viewport={{ once: true }}
+          >
+            {stats.map((stat, index) => (
               <motion.div
-                key={stat.label}
+                key={index}
+                className="text-center"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="py-8"
               >
-                <div className="text-4xl md:text-5xl font-serif font-bold text-gold mb-2">
-                  {stat.number}
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-gold/20 rounded-full text-gold mb-4">
+                  {stat.icon}
                 </div>
-                <div className="text-text-secondary">
+                <div className="text-4xl md:text-5xl font-serif font-bold text-gold mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-text-secondary text-sm md:text-base font-medium">
                   {stat.label}
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="py-24 bg-card">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* Our Values */}
+      <section className="py-16 md:py-24 lg:py-32 bg-elevated">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
           >
-            <h2 className="section-heading">Our Journey</h2>
+            <h2 className="section-heading">{t('whatsapp.hc.ourValues')}</h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
-              Key milestones in our growth as Dubai's premier luxury real estate agency
+              {t('whatsapp.hc.aboutLong')}
             </p>
           </motion.div>
 
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-0.5 h-full w-0.5 bg-gold/30 hidden md:block"></div>
-            
-            <div className="space-y-12 md:space-y-16">
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={milestone.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className={`flex flex-col md:flex-row items-center ${
-                    index % 2 === 0 ? 'md:flex-row-reverse' : ''
-                  }`}
-                >
-                  {/* Content */}
-                  <div className="w-full md:w-5/12 mb-6 md:mb-0">
-                    <div className={`bg-background p-6 rounded-xl border border-white/10 ${
-                      index % 2 === 0 ? 'md:ml-8' : 'md:mr-8'
-                    }`}>
-                      <div className="text-2xl font-serif font-bold text-gold mb-2">
-                        {milestone.year}
-                      </div>
-                      <h3 className="text-xl font-serif font-bold text-text-primary mb-3">
-                        {milestone.title}
-                      </h3>
-                      <p className="text-text-secondary">
-                        {milestone.description}
-                      </p>
-                    </div>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* International Experience */}
+            <motion.div
+              style={{
+                background: 'rgba(196,162,101,0.05)',
+                border: '1px solid rgba(196,162,101,0.2)',
+                borderRadius: '16px',
+                padding: '48px 32px',
+                textAlign: 'center',
+              }}
+              whileHover={{ y: -8, borderColor: 'rgba(196,162,101,0.5)' }}
+              transition={{ duration: 0.3 }}
+            >
+              <div
+                style={{
+                  width: '80px',
+                  height: '80px',
+                  background: 'linear-gradient(135deg, rgba(196,162,101,0.2), rgba(196,162,101,0.05))',
+                  borderRadius: '50%',
+                  margin: '0 auto 24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Star className="w-10 h-10 text-gold" />
+              </div>
+              <h3
+                style={{
+                  fontSize: '1.5rem',
+                  fontFamily: 'Cormorant Garamond,serif',
+                  fontWeight: 700,
+                  color: '#c4a265',
+                  marginBottom: '16px',
+                }}
+              >
+                {t('whatsapp.hc.valExperience')}
+              </h3>
+              <p className="text-text-secondary leading-relaxed">
+                {t('whatsapp.hc.valExperienceDesc')}
+              </p>
+            </motion.div>
 
-                  {/* Timeline Dot */}
-                  <div className="hidden md:block w-4 h-4 bg-gold rounded-full border-4 border-card flex-shrink-0 z-10"></div>
+            {/* Personalised Service */}
+            <motion.div
+              style={{
+                background: 'rgba(196,162,101,0.05)',
+                border: '1px solid rgba(196,162,101,0.2)',
+                borderRadius: '16px',
+                padding: '48px 32px',
+                textAlign: 'center',
+              }}
+              whileHover={{ y: -8, borderColor: 'rgba(196,162,101,0.5)' }}
+              transition={{ duration: 0.3 }}
+            >
+              <div
+                style={{
+                  width: '80px',
+                  height: '80px',
+                  background: 'linear-gradient(135deg, rgba(196,162,101,0.2), rgba(196,162,101,0.05))',
+                  borderRadius: '50%',
+                  margin: '0 auto 24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Globe className="w-10 h-10 text-gold" />
+              </div>
+              <h3
+                style={{
+                  fontSize: '1.5rem',
+                  fontFamily: 'Cormorant Garamond,serif',
+                  fontWeight: 700,
+                  color: '#c4a265',
+                  marginBottom: '16px',
+                }}
+              >
+                {t('whatsapp.hc.valService')}
+              </h3>
+              <p className="text-text-secondary leading-relaxed">
+                {t('whatsapp.hc.valServiceDesc')}
+              </p>
+            </motion.div>
 
-                  {/* Spacer */}
-                  <div className="hidden md:block w-5/12"></div>
-                </motion.div>
-              ))}
-            </div>
+            {/* Total Transparency */}
+            <motion.div
+              style={{
+                background: 'rgba(196,162,101,0.05)',
+                border: '1px solid rgba(196,162,101,0.2)',
+                borderRadius: '16px',
+                padding: '48px 32px',
+                textAlign: 'center',
+              }}
+              whileHover={{ y: -8, borderColor: 'rgba(196,162,101,0.5)' }}
+              transition={{ duration: 0.3 }}
+            >
+              <div
+                style={{
+                  width: '80px',
+                  height: '80px',
+                  background: 'linear-gradient(135deg, rgba(196,162,101,0.2), rgba(196,162,101,0.05))',
+                  borderRadius: '50%',
+                  margin: '0 auto 24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Shield className="w-10 h-10 text-gold" />
+              </div>
+              <h3
+                style={{
+                  fontSize: '1.5rem',
+                  fontFamily: 'Cormorant Garamond,serif',
+                  fontWeight: 700,
+                  color: '#c4a265',
+                  marginBottom: '16px',
+                }}
+              >
+                {t('whatsapp.hc.valTrust')}
+              </h3>
+              <p className="text-text-secondary leading-relaxed">
+                {t('whatsapp.hc.valTrustDesc')}
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Location Section */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+      {/* CTA */}
+      <motion.section
+        className="py-20 bg-background"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-6">
+            {t('whatsapp.hc.readyInvest')}
+          </h2>
+          <p className="text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
+            {t('whatsapp.hc.readyInvestDesc')}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contacto"
+              className="btn-gold-solid text-lg px-8 py-4 inline-flex items-center space-x-2"
             >
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-6">
-                Our Location
-              </h2>
-              <div className="prose">
-                <p className="text-text-secondary mb-6 leading-relaxed">
-                  Strategically located in Business Bay, one of Dubai's most prestigious business districts, 
-                  our office provides the perfect base to serve clients across the emirate's luxury property market.
-                </p>
-                <p className="text-text-secondary mb-8 leading-relaxed">
-                  Business Bay's central location offers unparalleled access to Downtown Dubai, DIFC, Dubai Marina, 
-                  and other prime real estate destinations, enabling us to provide comprehensive market coverage 
-                  and on-ground expertise.
-                </p>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-gold" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-text-primary">Business Bay</div>
-                    <div className="text-text-secondary">Dubai, United Arab Emirates</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
-                    <Clock className="w-6 h-6 text-gold" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-text-primary">Office Hours</div>
-                    <div className="text-text-secondary">Sunday - Thursday, 9:00 AM - 6:00 PM</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="relative"
+              <span>{t('whatsapp.hc.contactNow')}</span>
+              <ArrowRight size={18} />
+            </Link>
+            <a
+              href="https://wa.me/971585821144"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold text-lg px-8 py-4"
             >
-              <img
-                src="/dubai-luxury-homes/images/business-bay-view.jpg"
-                alt="Business Bay Dubai"
-                className="luxury-image w-full h-[500px] rounded-xl"
-              />
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gold/20 rounded-full blur-xl"></div>
-            </motion.div>
+              WhatsApp
+            </a>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };
