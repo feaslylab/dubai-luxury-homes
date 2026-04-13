@@ -55,7 +55,7 @@ const resources = {
           title: 'Por Qué Elegirnos',
           experience: {
             title: 'Experiencia Comprobada',
-            description: 'Experiencia Institucional',
+            description: 'Respuesta en menos de 24 horas',
           },
           trust: {
             title: 'Confianza Absoluta',
@@ -63,11 +63,11 @@ const resources = {
           },
           service: {
             title: 'Servicio 360°',
-            description: 'Gestión de Inversiones Integral',
+            description: 'De la búsqueda hasta la rentabilidad',
           },
           spanish: {
-            title: 'Atención en Español',
-            description: 'Enfoque en Inversores Globales',
+            title: 'Atención en Diferentes Idiomas',
+            description: 'Inglés, Árabe, Francés y Español',
           },
         },
         stats: {
@@ -623,7 +623,7 @@ const resources = {
           title: 'Why Choose Us',
           experience: {
             title: 'Proven Experience',
-            description: 'Institutional Expertise',
+            description: 'Response in less than 24 hours',
           },
           trust: {
             title: 'Absolute Trust',
@@ -631,11 +631,11 @@ const resources = {
           },
           service: {
             title: '360° Service',
-            description: 'End-to-End Investment Management',
+            description: 'From search to profitability',
           },
           spanish: {
-            title: 'Spanish Service',
-            description: 'Global Investor Focus',
+            title: 'Multilingual Service',
+            description: 'English, Arabic, French and Spanish',
           },
         },
         stats: {
