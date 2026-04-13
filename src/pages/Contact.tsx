@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
   Send,
   MessageSquare,
   Calendar,
@@ -26,11 +26,11 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
-      alert('Thank you for your message! We will contact you within 24 hours.');
+      alert(t('whatsapp.hc.thankYou'));
       setFormData({ name: '', email: '', phone: '', subject: 'general', message: '' });
     }, 1500);
   };
@@ -90,7 +90,7 @@ const Contact = () => {
       title: 'WhatsApp Chat',
       description: 'Instant messaging support',
       action: 'Start Chat',
-      href: 'https://wa.me/971545535505',
+      href: 'https://wa.me/971585821144',
       color: 'from-green-500 to-green-600'
     },
     {
@@ -122,7 +122,7 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl font-serif font-bold text-gold mb-6"
           >
-            {t('contactTitle')}
+            {t('contact.hero.title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -130,7 +130,7 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl text-text-secondary max-w-3xl mx-auto"
           >
-            Ready to invest in Dubai's luxury real estate market? Our expert team is here to guide you every step of the way.
+            {t('contact.hero.subtitle')}
           </motion.p>
         </div>
       </section>
@@ -181,7 +181,7 @@ const Contact = () => {
             >
               <div className="bg-background border border-white/10 rounded-2xl p-8">
                 <h2 className="text-3xl font-serif font-bold text-gold mb-6">
-                  Send us a Message
+                  {t('contact.form.title')}
                 </h2>
                 <p className="text-text-secondary mb-8">
                   Fill out the form below and our experts will get back to you within 24 hours.
@@ -191,7 +191,7 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">
-                        Full Name *
+                        {t('contact.form.name')} *
                       </label>
                       <input
                         type="text"
@@ -207,7 +207,7 @@ const Contact = () => {
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">
-                        Email Address *
+                        {t('contact.form.email')} *
                       </label>
                       <input
                         type="email"
@@ -225,7 +225,7 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-text-primary mb-2">
-                        Phone Number
+                        {t('contact.form.phone')}
                       </label>
                       <input
                         type="tel"
@@ -261,7 +261,7 @@ const Contact = () => {
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
-                      Message *
+                      {t('contact.form.message')} *
                     </label>
                     <textarea
                       id="message"
@@ -291,7 +291,7 @@ const Contact = () => {
                     ) : (
                       <>
                         <Send size={18} />
-                        <span>Send Message</span>
+                        <span>{t('contact.form.send')}</span>
                       </>
                     )}
                   </motion.button>
@@ -315,10 +315,10 @@ const Contact = () => {
               <div className="space-y-8">
                 <div>
                   <h2 className="text-3xl font-serif font-bold text-gold mb-6">
-                    Get in Touch
+                    {t('contact.info.title')}
                   </h2>
                   <p className="text-text-secondary mb-8 leading-relaxed">
-                    Our experienced team is ready to assist you with all your Dubai real estate needs. 
+                    Our experienced team is ready to assist you with all your Dubai real estate needs.
                     From property selection to Golden Visa applications, we're here to guide you every step of the way.
                   </p>
                 </div>
@@ -415,10 +415,10 @@ const Contact = () => {
               <div className="text-center">
                 <MapPin className="w-16 h-16 text-gold mx-auto mb-4" />
                 <h3 className="text-xl font-serif font-bold text-gold mb-2">
-                  Interactive Map Coming Soon
+                  Business Bay, Dubai
                 </h3>
                 <p className="text-text-secondary mb-4">
-                  Business Bay, Dubai, UAE
+                  {t('whatsapp.hc.uae')}
                 </p>
                 <a
                   href="https://maps.google.com/?q=Business+Bay+Dubai"
@@ -427,10 +427,40 @@ const Contact = () => {
                   className="btn-gold inline-flex items-center"
                 >
                   <MapPin className="w-4 h-4 mr-2" />
-                  Open in Google Maps
+                  {t('whatsapp.hc.viewMaps')}
                 </a>
               </div>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* WhatsApp Immediate Assistance */}
+      <section className="py-16 bg-card">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-green-500/10 to-green-600/10 border border-green-500/20 rounded-2xl p-12 text-center"
+          >
+            <MessageSquare className="w-12 h-12 text-green-500 mx-auto mb-6" />
+            <h2 className="text-3xl font-serif font-bold text-gold mb-4">
+              {t('whatsapp.hc.needImmediate')}
+            </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto mb-8">
+              {t('whatsapp.hc.urgentDesc')}
+            </p>
+            <a
+              href="https://wa.me/971585821144"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-3 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-medium transition-colors duration-300"
+            >
+              <MessageSquare className="w-5 h-5" />
+              <span>{t('whatsapp.hc.contactWhatsApp')}</span>
+            </a>
           </motion.div>
         </div>
       </section>
