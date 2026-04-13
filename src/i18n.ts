@@ -23,7 +23,7 @@ const resources = {
         about: {
           title: 'Maestros de la Inversión de Alto Valor',
           content:
-            'Con sede en Business Bay, seleccionamos oportunidades de inversión inmobiliaria de grado institucional en Dubái exclusivamente para inversores de alto patrimonio que buscan rendimientos superiores en el mercado más dinámico del mundo.',
+            'Con sede en Dubái, seleccionamos oportunidades de inversión inmobiliaria de grado institucional en Dubái exclusivamente para inversores de alto patrimonio que buscan rendimientos superiores en el mercado más dinámico del mundo.',
         },
         services: {
           title: 'Nuestros Servicios',
@@ -49,7 +49,7 @@ const resources = {
         mission: {
           title: 'Nuestra Misión',
           content:
-            'Desde la adquisición hasta la optimización de carteras, ofrecemos gestión integral de inversiones para activos inmobiliarios premium en Dubái. Nuestro enfoque institucional garantiza rendimientos máximos navegando marcos regulatorios, vías de Golden Visa y dinámicas de mercado con precisión.',
+            'Desde la adquisición hasta la optimización de carteras, ofrecemos gestión integral de inversiones inmobiliarias en Dubái. Nuestro enfoque estratégico, combinado con análisis de mercado, nos permite identificar proyectos de alto potencial y acompañamiento experto que permite a nuestros clientes tomar decisiones seguras con buenos fundamentos.',
         },
         whyUs: {
           title: 'Por Qué Elegirnos',
@@ -278,7 +278,7 @@ const resources = {
             'Nuestro equipo te acompaña en cada paso — desde la selección de la propiedad ideal hasta la gestión completa de tu inversión, todo en español.',
           incomeTax: 'Impuesto sobre Renta',
           aboutLong:
-            'Con más de 12 años de experiencia en el mercado inmobiliario de Dubai, ofrecemos un servicio personalizado para inversores internacionales que buscan las mejores oportunidades en el emirato.',
+            'Con más de 12 años de experiencia en el mercado inmobiliario de Dubái, ofrecemos un servicio personalizado para inversores internacionales que buscan oportunidades sólidas de alto valor, revalorización y proyección de futuro.',
           ourTeam: 'Nuestro Equipo',
           teamDesc:
             'Profesionales con amplia experiencia en mercados inmobiliarios globales',
@@ -590,7 +590,7 @@ const resources = {
         about: {
           title: 'Masters of High-Value Investment',
           content:
-            'Based in Business Bay, we curate institutional-grade Dubai real estate investment opportunities exclusively for high-net-worth investors seeking superior returns in the world\'s most dynamic market.',
+            'Based in Dubai, we curate institutional-grade Dubai real estate investment opportunities exclusively for high-net-worth investors seeking superior returns in the world\'s most dynamic market.',
         },
         services: {
           title: 'Our Services',
@@ -617,7 +617,7 @@ const resources = {
         mission: {
           title: 'Our Mission',
           content:
-            'From acquisition to portfolio optimisation, we deliver comprehensive investment management for premium Dubai property assets. Our institutional approach ensures maximum returns while navigating regulatory frameworks, Golden Visa pathways, and market dynamics with precision.',
+            'From acquisition to portfolio optimisation, we deliver comprehensive real estate investment management in Dubai. Our strategic focus, combined with market analysis, allows us to identify high-potential projects with expert guidance that enables our clients to make sound, well-founded decisions.',
         },
         whyUs: {
           title: 'Why Choose Us',
@@ -848,7 +848,7 @@ const resources = {
             'Our team accompanies you every step — from selecting the ideal property to complete management of your investment.',
           incomeTax: 'Income Tax',
           aboutLong:
-            'With over 12 years of experience in Dubai real estate, we deliver personalised service for international investors seeking the finest opportunities in the emirate.',
+            'With over 12 years of experience in the Dubai real estate market, we offer a personalised service for international investors seeking solid high-value opportunities with strong appreciation and future growth potential.',
           ourTeam: 'Our Team',
           teamDesc:
             'Professionals with extensive experience in global real estate markets',

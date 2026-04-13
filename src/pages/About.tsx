@@ -87,44 +87,6 @@ const About = () => {
                 className="w-full h-[500px] object-cover rounded-xl"
                 loading="lazy"
               />
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '-16px',
-                  right: '-16px',
-                  width: '120px',
-                  height: '120px',
-                  background: 'rgba(196,162,101,0.15)',
-                  backdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(196,162,101,0.3)',
-                  borderRadius: '12px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: '2rem',
-                    fontWeight: 700,
-                    color: '#c4a265',
-                    fontFamily: 'Cormorant Garamond,serif',
-                  }}
-                >
-                  12+
-                </span>
-                <span
-                  style={{
-                    fontSize: '0.7rem',
-                    color: 'rgba(255,255,255,0.7)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                  }}
-                >
-                  {t('whatsapp.hc.yearsExcellence')}
-                </span>
-              </div>
             </motion.div>
 
             <motion.div
