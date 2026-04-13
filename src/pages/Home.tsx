@@ -9,6 +9,18 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import {
+  fadeUp,
+  fadeIn,
+  slideLeft,
+  slideRight,
+  scaleIn,
+  springUp,
+  staggerContainer,
+  staggerContainerSlow,
+  hoverLift,
+  viewportOnce,
+} from '../utils/animations';
 
 /* ------------------------------------------------------------------ */
 /*  Base path helper                                                   */
@@ -36,18 +48,6 @@ function useCountUp(end: number, duration = 2000, start = false) {
   }, [start, end, duration]);
   return value;
 }
-
-/* ------------------------------------------------------------------ */
-/*  Fade-up animation variant                                          */
-/* ------------------------------------------------------------------ */
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, delay: i * 0.12 },
-  }),
-};
 
 /* ------------------------------------------------------------------ */
 /*  Home Page                                                          */
@@ -139,44 +139,54 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-black/60" />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <motion.div
+            variants={staggerContainerSlow}
+            initial="initial"
+            animate="whileInView"
             className="font-serif font-bold text-white mb-6"
             style={{ fontSize: 'clamp(2rem, 5vw + 1rem, 5rem)', lineHeight: 1.1 }}
           >
-            {t('home.hero.title')}
-          </motion.h1>
+            {t('home.hero.title').split(' ').map((word, i) => (
+              <motion.span key={i} variants={springUp} className="inline-block mr-[0.3em]">
+                {word}
+              </motion.span>
+            ))}
+          </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={fadeUp}
+            initial="initial"
+            animate="whileInView"
+            transition={{ delay: 0.4 }}
             className="text-xl md:text-2xl text-text-secondary mb-8 max-w-2xl mx-auto"
           >
             {t('home.hero.subtitle')}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            variants={staggerContainer}
+            initial="initial"
+            animate="whileInView"
+            transition={{ delay: 0.6, staggerChildren: 0.1 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Link to="/propiedades" className="btn-gold-solid inline-flex items-center">
-              {t('whatsapp.hc.viewProps')}
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-            <a
-              href="https://wa.me/971585821144"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold inline-flex items-center gap-2"
-            >
-              <MessageCircle className="w-5 h-5" />
-              WhatsApp
-            </a>
+            <motion.div variants={fadeUp}>
+              <Link to="/propiedades" className="btn-gold-solid inline-flex items-center">
+                {t('whatsapp.hc.viewProps')}
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </motion.div>
+            <motion.div variants={fadeUp}>
+              <a
+                href="https://wa.me/971585821144"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold inline-flex items-center gap-2"
+              >
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -186,20 +196,22 @@ const Home: React.FC = () => {
       {/* ================================================================ */}
       <section ref={kpiRef} className="py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+          >
             {[
               { value: countYears, suffix: '+', label: t('whatsapp.hc.yearsExcellence') },
               { value: countAssets, suffix: '+', label: t('whatsapp.hc.statAssets') },
               { value: countInvestors, suffix: '+', label: t('whatsapp.hc.statInvestors') },
               { value: countTransactions, suffix: '', prefix: 'USD ', suffixText: 'B+', label: t('whatsapp.hc.statTransactions') },
-            ].map((kpi, idx) => (
+            ].map((kpi) => (
               <motion.div
                 key={kpi.label}
-                custom={idx}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                variants={scaleIn}
                 className="text-center"
               >
                 <div className="text-4xl md:text-5xl font-serif font-bold text-gold mb-2">
@@ -210,7 +222,7 @@ const Home: React.FC = () => {
                 <div className="text-text-secondary text-sm">{kpi.label}</div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -222,10 +234,10 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Images */}
             <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              variants={slideLeft}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportOnce}
               className="relative"
             >
               <img
@@ -233,20 +245,23 @@ const Home: React.FC = () => {
                 alt="Puerta del Sol Real Estate"
                 className="w-48 mb-6"
               />
-              <img
+              <motion.img
                 src={img('luxury-interior-2.jpg')}
                 alt="Luxury Interior"
                 className="luxury-image w-full h-[420px] rounded-xl object-cover"
+                initial={{ scale: 1.1 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+                viewport={viewportOnce}
               />
             </motion.div>
 
             {/* Text */}
             <motion.div
-              variants={fadeUp}
-              custom={1}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              variants={slideRight}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportOnce}
             >
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-gold mb-6">
                 {t('home.about.title')}
@@ -273,23 +288,33 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
             className="text-center mb-16"
           >
-            <h2 className="section-heading">{t('whatsapp.hc.luxInvTitle')}</h2>
+            <motion.h2
+              className="section-heading"
+              initial={{ scale: 0.95 }}
+              whileInView={{ scale: 1 }}
+              viewport={viewportOnce}
+            >
+              {t('whatsapp.hc.luxInvTitle')}
+            </motion.h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {categories.map((cat, idx) => (
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {categories.map((cat) => (
               <motion.div
                 key={cat.key}
-                custom={idx}
                 variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                whileHover={hoverLift}
                 className="card-luxury overflow-hidden group"
               >
                 <div className="relative h-52 overflow-hidden">
@@ -315,7 +340,7 @@ const Home: React.FC = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -326,23 +351,33 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
             className="text-center mb-16"
           >
-            <h2 className="section-heading">{t('home.services.title')}</h2>
+            <motion.h2
+              className="section-heading"
+              initial={{ scale: 0.95 }}
+              whileInView={{ scale: 1 }}
+              viewport={viewportOnce}
+            >
+              {t('home.services.title')}
+            </motion.h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {serviceItems.map((svc, idx) => (
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {serviceItems.map((svc) => (
               <motion.div
                 key={svc.key}
-                custom={idx}
                 variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                whileHover={hoverLift}
                 className="card-luxury overflow-hidden group"
               >
                 <div className="relative h-48 overflow-hidden">
@@ -362,13 +397,13 @@ const Home: React.FC = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
             className="text-center mt-12"
           >
             <Link to="/servicios" className="btn-gold inline-flex items-center">
@@ -386,12 +421,19 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
             className="text-center mb-16"
           >
-            <h2 className="section-heading">{t('whatsapp.hc.dubaiDest')}</h2>
+            <motion.h2
+              className="section-heading"
+              initial={{ scale: 0.95 }}
+              whileInView={{ scale: 1 }}
+              viewport={viewportOnce}
+            >
+              {t('whatsapp.hc.dubaiDest')}
+            </motion.h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
               {t('whatsapp.hc.dubaiDestDesc')}
             </p>
@@ -414,11 +456,15 @@ const Home: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-                  {/* Stat badge */}
-                  <div className="absolute top-6 right-6 bg-gold/90 text-black rounded-xl px-5 py-3 text-center">
+                  {/* Stat badge — breathing animation */}
+                  <motion.div
+                    className="absolute top-6 right-6 bg-gold/90 text-black rounded-xl px-5 py-3 text-center"
+                    animate={{ scale: [1, 1.08, 1] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  >
                     <div className="text-3xl font-bold">{slide.stat}</div>
                     <div className="text-xs font-semibold uppercase">{t(slide.statLabel)}</div>
-                  </div>
+                  </motion.div>
 
                   {/* Text */}
                   <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
@@ -473,23 +519,33 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
             className="text-center mb-16"
           >
-            <h2 className="section-heading">{t('home.blog.title')}</h2>
+            <motion.h2
+              className="section-heading"
+              initial={{ scale: 0.95 }}
+              whileInView={{ scale: 1 }}
+              viewport={viewportOnce}
+            >
+              {t('home.blog.title')}
+            </motion.h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
             {blogArticles.map((article, idx) => (
               <motion.div
                 key={idx}
-                custom={idx}
                 variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                whileHover={hoverLift}
                 className="card-luxury overflow-hidden group"
               >
                 <div className="relative h-52 overflow-hidden">
@@ -519,13 +575,13 @@ const Home: React.FC = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
             className="text-center mt-12"
           >
             <Link to="/blog" className="btn-gold inline-flex items-center">
@@ -550,9 +606,9 @@ const Home: React.FC = () => {
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-gold mb-4">
               {t('home.cta.title')}
@@ -560,21 +616,27 @@ const Home: React.FC = () => {
             <p className="text-text-secondary text-lg mb-10 max-w-2xl mx-auto">
               {t('home.cta.subtitle')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="https://wa.me/971585821144"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-gold-solid flex items-center gap-2"
-              >
-                <MessageCircle className="w-5 h-5" />
-                {t('home.cta.button')}
-              </a>
-              <Link to="/contacto" className="btn-gold inline-flex items-center">
-                {t('whatsapp.hc.contactNow')}
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </div>
+          </motion.div>
+          <motion.div
+            variants={springUp}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <a
+              href="https://wa.me/971585821144"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold-solid flex items-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5" />
+              {t('home.cta.button')}
+            </a>
+            <Link to="/contacto" className="btn-gold inline-flex items-center">
+              {t('whatsapp.hc.contactNow')}
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
           </motion.div>
         </div>
       </section>
