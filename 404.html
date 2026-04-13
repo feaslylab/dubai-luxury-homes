@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // GitHub Pages SPA redirect
+      // Converts /dubai-luxury-homes/servicios to /dubai-luxury-homes/?p=/servicios
+      // Then index.html picks it up and routes via React Router
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+      window.location.replace(
+        window.location.origin + '/dubai-luxury-homes/?p=' +
+        encodeURIComponent(path.replace('/dubai-luxury-homes', '')) +
+        (search ? '&q=' + encodeURIComponent(search.slice(1)) : '') +
+        hash
+      );
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
