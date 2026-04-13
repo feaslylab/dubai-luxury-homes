@@ -10,7 +10,7 @@ export default {
         background: '#0a0a0a',
         card: '#111111',
         elevated: '#1a1a1a',
-        gold: '#C9A96E',
+        gold: '#c4a265',
         'gold-light': '#D4B275',
         'text-primary': '#ffffff',
         'text-secondary': '#b0b0b0',

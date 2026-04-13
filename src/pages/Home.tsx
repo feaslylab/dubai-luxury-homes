@@ -143,7 +143,8 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-serif font-bold text-white mb-6"
+            className="font-serif font-bold text-white mb-6"
+            style={{ fontSize: 'clamp(2rem, 5vw + 1rem, 5rem)', lineHeight: 1.1 }}
           >
             {t('home.hero.title')}
           </motion.h1>
@@ -163,7 +164,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Link to="/propiedades" className="btn-gold-solid">
+            <Link to="/propiedades" className="btn-gold-solid inline-flex items-center">
               {t('whatsapp.hc.viewProps')}
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
@@ -171,7 +172,7 @@ const Home: React.FC = () => {
               href="https://wa.me/971585821144"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold flex items-center gap-2"
+              className="btn-gold inline-flex items-center gap-2"
             >
               <MessageCircle className="w-5 h-5" />
               WhatsApp

@@ -62,7 +62,7 @@ const ContactPopup = () => {
         </button>
 
         {/* Gold Diamond */}
-        <div style={{ fontSize: '2rem', marginBottom: '1rem', color: '#C9A96E' }}>
+        <div style={{ fontSize: '2rem', marginBottom: '1rem', color: '#c4a265' }}>
           &#9670;
         </div>
 
