@@ -93,7 +93,7 @@ const ContactPopup = () => {
         {/* WhatsApp Button */}
         <a
           href={`https://wa.me/971585821144?text=${encodeURIComponent(
-            t('whatsapp.message')
+            t('whatsapp.message') as string
           )}`}
           target="_blank"
           rel="noopener"

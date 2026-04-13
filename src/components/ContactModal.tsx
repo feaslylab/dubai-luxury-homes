@@ -12,7 +12,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
 
   const whatsappUrl = `https://wa.me/971585821144?text=${encodeURIComponent(
-    t('whatsapp.message')
+    t('whatsapp.message') as string
   )}`;
 
   return (
