@@ -56,7 +56,7 @@ const Home: React.FC = () => {
   const { t } = useTranslation();
 
   /* ---- Hero video crossfade ---- */
-  const heroVideos = [vid('hero-downtown-night.mp4'), vid('hero-marina-night.mp4')];
+  const heroVideos = [vid('hero-golden-hour.mp4')];
   const [activeVideo, setActiveVideo] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
