@@ -7,10 +7,12 @@
   html {
     scroll-behavior: smooth;
     font-size: clamp(14px, 1.2vw, 18px);
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-text-primary font-sans;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -221,4 +223,18 @@ section.relative.h-screen::before,
 section.relative.min-h-screen::before {
   height: 200px;
   z-index: 5;
+}
+
+/* Mobile tap targets — minimum 44px touch area */
+@media (max-width: 768px) {
+  a, button, [role="button"], input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  nav a, nav button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
