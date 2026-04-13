@@ -1,240 +1,372 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Award, 
-  Users, 
-  Clock, 
-  Shield, 
-  CheckCircle, 
-  ArrowRight,
+import { Link } from 'react-router-dom';
+import {
+  Award,
+  Clock,
+  Users,
+  Shield,
+  Globe,
+  Briefcase,
+  Heart,
+  CheckCircle,
   FileText,
   Home,
-  Briefcase,
   GraduationCap,
-  Heart,
-  Globe
+  Phone,
+  ArrowRight,
+  MessageCircle,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import ContactModal from '../components/ContactModal';
 
+/* ------------------------------------------------------------------ */
+/*  Base path helper                                                   */
+/* ------------------------------------------------------------------ */
+const BASE = '/dubai-luxury-homes';
+const img = (name: string) => `${BASE}/images/${name}`;
+
+/* ------------------------------------------------------------------ */
+/*  Golden Visa Page                                                   */
+/* ------------------------------------------------------------------ */
 const GoldenVisa = () => {
   const { t } = useTranslation();
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
+  /* ---------- Investment Routes ---------- */
+  const investmentRoutes = [
+    {
+      icon: <Home className="w-8 h-8" />,
+      title: t('whatsapp.hc.realEstateProp'),
+      amount: t('whatsapp.hc.visaAmount2m'),
+      duration: t('whatsapp.hc.visaDuration10'),
+      description: t('whatsapp.hc.visaProp'),
+      color: 'from-gold to-gold-light',
+    },
+    {
+      icon: <Briefcase className="w-8 h-8" />,
+      title: t('whatsapp.hc.investFund'),
+      amount: t('whatsapp.hc.visaAmount2m'),
+      duration: t('whatsapp.hc.visaDuration10'),
+      description: t('whatsapp.hc.visaFund'),
+      color: 'from-blue-500 to-blue-600',
+    },
+    {
+      icon: <GraduationCap className="w-8 h-8" />,
+      title: t('whatsapp.hc.gvEntrepreneur'),
+      amount: t('whatsapp.hc.gvEntrepreneurAmt'),
+      duration: t('whatsapp.hc.visaDuration5'),
+      description: t('whatsapp.hc.gvEntrepreneurDesc'),
+      color: 'from-purple-500 to-purple-600',
+    },
+  ];
+
+  /* ---------- Benefits ---------- */
   const benefits = [
     {
-      icon: Clock,
-      title: '10-Year Visa',
-      description: 'Long-term residency with automatic renewal options'
+      icon: <Clock className="w-6 h-6" />,
+      title: t('goldenVisa.benefits.items.0'),
+      description: t('whatsapp.hc.visaNoRenewal'),
     },
     {
-      icon: Users,
-      title: 'Family Inclusion',
-      description: 'Visa extends to spouse and unmarried children under 25'
+      icon: <CheckCircle className="w-6 h-6" />,
+      title: t('goldenVisa.benefits.items.1'),
+      description: t('whatsapp.hc.visaSimple'),
     },
     {
-      icon: Shield,
-      title: 'No Sponsor Required',
-      description: 'Complete independence from traditional UAE sponsorship'
+      icon: <Users className="w-6 h-6" />,
+      title: t('goldenVisa.benefits.items.2'),
+      description: t('whatsapp.hc.visaFamily'),
     },
     {
-      icon: Globe,
-      title: 'Multiple Entry',
-      description: 'Unlimited entry and exit with 6-month validity outside UAE'
+      icon: <Shield className="w-6 h-6" />,
+      title: t('goldenVisa.benefits.items.3'),
+      description: t('whatsapp.hc.gvBenefitFreedom'),
     },
     {
-      icon: Briefcase,
-      title: 'Work Freedom',
-      description: 'Ability to work, study, and conduct business in the UAE'
+      icon: <Globe className="w-6 h-6" />,
+      title: t('goldenVisa.benefits.items.4'),
+      description: t('whatsapp.hc.gvBenefitTravel'),
     },
     {
-      icon: Heart,
-      title: 'Healthcare Access',
-      description: 'Access to world-class healthcare system in the UAE'
-    }
+      icon: <Heart className="w-6 h-6" />,
+      title: t('goldenVisa.benefits.items.5'),
+      description: t('whatsapp.hc.visaLifestyle'),
+    },
   ];
 
-  const eligibilityOptions = [
-    {
-      icon: Home,
-      title: 'Real Estate Investment',
-      amount: 'AED 2 Million+',
-      description: 'Purchase property worth AED 2 million or more',
-      requirements: [
-        'Minimum property value of AED 2 million',
-        'Property can be residential or commercial',
-        'Multiple properties can be combined',
-        'Retain ownership for at least 3 years'
-      ],
-      recommended: true
-    },
-    {
-      icon: Briefcase,
-      title: 'Business Investment',
-      amount: 'AED 10 Million+',
-      description: 'Invest in existing or new UAE business',
-      requirements: [
-        'Minimum capital investment of AED 10 million',
-        'Partnership with UAE national or business',
-        'Business must be profitable',
-        'Create employment opportunities'
-      ]
-    },
-    {
-      icon: GraduationCap,
-      title: 'Exceptional Talents',
-      amount: 'Skills Based',
-      description: 'For exceptional professionals and specialists',
-      requirements: [
-        'Recognized expertise in specific fields',
-        'Recommendation from government entity',
-        'Proof of achievements and contributions',
-        'Meet specific salary requirements'
-      ]
-    }
-  ];
-
-  const process = [
+  /* ---------- Process Steps ---------- */
+  const processSteps = [
     {
       step: '01',
-      title: 'Initial Consultation',
-      description: 'Assessment of eligibility and requirements',
-      duration: '1-2 days'
+      title: t('goldenVisa.process.step1.title'),
+      description: t('goldenVisa.process.step1.description'),
+      icon: <Users className="w-8 h-8" />,
     },
     {
       step: '02',
-      title: 'Property Selection',
-      description: 'Identify and evaluate suitable properties',
-      duration: '1-2 weeks'
+      title: t('goldenVisa.process.step2.title'),
+      description: t('goldenVisa.process.step2.description'),
+      icon: <Home className="w-8 h-8" />,
     },
     {
       step: '03',
-      title: 'Property Purchase',
-      description: 'Complete property acquisition and registration',
-      duration: '2-4 weeks'
+      title: t('goldenVisa.process.step3.title'),
+      description: t('goldenVisa.process.step3.description'),
+      icon: <Shield className="w-8 h-8" />,
     },
     {
       step: '04',
-      title: 'Document Preparation',
-      description: 'Compile and authenticate all required documents',
-      duration: '1-2 weeks'
+      title: t('goldenVisa.process.step4.title'),
+      description: t('goldenVisa.process.step4.description'),
+      icon: <Heart className="w-8 h-8" />,
     },
-    {
-      step: '05',
-      title: 'Visa Application',
-      description: 'Submit Golden Visa application to authorities',
-      duration: '2-3 weeks'
-    },
-    {
-      step: '06',
-      title: 'Visa Issuance',
-      description: 'Receive Golden Visa and Emirates ID',
-      duration: '1-2 weeks'
-    }
-  ];
-
-  const documents = [
-    'Valid passport with minimum 6 months validity',
-    'Property purchase agreement and title deed',
-    'Property valuation certificate',
-    'No-objection certificate from developer',
-    'Bank statements and financial documents',
-    'Educational certificates (attested)',
-    'Medical fitness certificate',
-    'Good conduct certificate',
-    'Passport-sized photographs',
-    'Application forms and fees'
-  ];
-
-  const faqs = [
-    {
-      question: 'What is the minimum property value for Golden Visa eligibility?',
-      answer: 'The minimum property value is AED 2 million. This can be a single property or multiple properties combined to reach the threshold amount.'
-    },
-    {
-      question: 'Can I include my family in the Golden Visa application?',
-      answer: 'Yes, the Golden Visa includes your spouse and unmarried children under the age of 25. Each family member will receive their own visa with the same validity period.'
-    },
-    {
-      question: 'How long does the Golden Visa application process take?',
-      answer: 'The complete process typically takes 6-12 weeks from property purchase to visa issuance, depending on document preparation and government processing times.'
-    },
-    {
-      question: 'Do I need to maintain the property investment?',
-      answer: 'Yes, you must retain ownership of the property for a minimum of 3 years. Selling before this period may affect your visa status.'
-    },
-    {
-      question: 'Can I work in the UAE with a Golden Visa?',
-      answer: 'Yes, Golden Visa holders can work, study, and conduct business in the UAE without requiring a traditional employment visa or sponsor.'
-    },
-    {
-      question: 'Is the Golden Visa renewable?',
-      answer: 'Yes, the Golden Visa can be renewed for another 10-year period, provided you continue to meet the eligibility requirements.'
-    }
   ];
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-b from-card to-background">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex items-center justify-center mb-6"
-          >
-            <Award className="w-16 h-16 text-gold mr-4" />
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-gold">
-              UAE Golden Visa
-            </h1>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-text-secondary max-w-3xl mx-auto"
-          >
-            Secure your 10-year UAE residency through strategic real estate investment. 
-            Your gateway to long-term residency in the world's most dynamic city.
-          </motion.p>
+    <div className="min-h-screen">
+      {/* ========== HERO ========== */}
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={img('golden-visa-premium.jpg')}
+            alt="UAE Golden Visa"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
         </div>
+
+        <motion.div
+          className="relative z-10 text-center max-w-4xl mx-auto px-4"
+          style={{
+            backgroundColor: 'rgba(0,0,0,0.4)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderRadius: '0.75rem',
+            border: '1px solid rgba(255,255,255,0.08)',
+            padding: '2rem 2.5rem',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+          }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <h1
+            style={{ fontSize: 'clamp(2.5rem,6vw,4.5rem)', lineHeight: 1.1 }}
+            className="font-serif font-bold text-gold mb-6"
+          >
+            {t('goldenVisa.hero.title')}
+          </h1>
+          <p className="text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+            {t('goldenVisa.hero.subtitle')}
+          </p>
+          <motion.div
+            className="mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <a
+              href="#investment-types"
+              className="btn-gold-solid text-lg px-8 py-4 inline-flex items-center space-x-2"
+            >
+              <span>{t('whatsapp.hc.knowReqs')}</span>
+              <ArrowRight size={18} />
+            </a>
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* ========== INVESTMENT THRESHOLDS ========== */}
+      <section id="investment-types" className="py-16 md:py-24 lg:py-32 bg-elevated">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
           >
-            <h2 className="section-heading">Golden Visa Benefits</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              Discover the exclusive advantages of UAE Golden Visa residency
+            <h2 className="section-heading">
+              {t('goldenVisa.investment.title')}
+            </h2>
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+              {t('whatsapp.hc.investRoutes')}
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, staggerChildren: 0.2 }}
+            viewport={{ once: true }}
+          >
+            {investmentRoutes.map((route, index) => (
+              <motion.div
+                key={index}
+                className="card-luxury p-8 text-center group relative overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${route.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                />
+                <div className="relative z-10">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-card border border-gold/20 rounded-full text-gold mb-6 group-hover:bg-gold group-hover:text-background transition-all duration-300">
+                    {route.icon}
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-gold mb-2">
+                    {route.title}
+                  </h3>
+                  <div className="text-3xl font-serif font-bold text-text-primary mb-2">
+                    {route.amount}
+                  </div>
+                  <div className="text-sm font-medium text-gold mb-4 bg-gold/10 rounded-full px-4 py-2 inline-block">
+                    {t('whatsapp.hc.gvVisaPrefix')}{route.duration} Visa
+                  </div>
+                  <p className="text-text-secondary leading-relaxed">
+                    {route.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========== BENEFITS ========== */}
+      <section className="py-16 md:py-24 lg:py-32 bg-background">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="section-heading">
+              {t('goldenVisa.benefits.title')}
+            </h2>
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+              {t('whatsapp.hc.visaAdvantages')}
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, staggerChildren: 0.1 }}
+            viewport={{ once: true }}
+          >
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                className="flex items-start space-x-4 p-6 bg-card border border-gold/20 rounded-lg hover:border-gold transition-all duration-300"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center text-gold">
+                  {benefit.icon}
+                </div>
+                <div>
+                  <h3 className="text-lg font-serif font-bold text-text-primary mb-2">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    {benefit.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========== FAMILY COVERAGE ========== */}
+      <section className="py-16 md:py-24 lg:py-32 bg-background">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="section-heading">
+              {t('whatsapp.hc.gvFamilyTitle')}
+            </h2>
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+              {t('whatsapp.hc.gvFamilySubtitle')}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
+            {[
+              {
+                icon: <CheckCircle className="w-8 h-8" />,
+                title: t('whatsapp.hc.gvFamilyChildren'),
+                desc: t('whatsapp.hc.gvFamilyChildrenDesc'),
+                hl: true,
+              },
+              {
+                icon: <Users className="w-6 h-6" />,
+                title: t('whatsapp.hc.gvFamilySpouse'),
+                desc: t('whatsapp.hc.gvFamilySpouseDesc'),
+              },
+              {
+                icon: <Shield className="w-6 h-6" />,
+                title: t('whatsapp.hc.gvFamilyParents'),
+                desc: t('whatsapp.hc.gvFamilyParentsDesc'),
+              },
+              {
+                icon: <Globe className="w-6 h-6" />,
+                title: t('whatsapp.hc.gvFamilyHelpers'),
+                desc: t('whatsapp.hc.gvFamilyHelpersDesc'),
+              },
+              {
+                icon: <Heart className="w-6 h-6" />,
+                title: t('whatsapp.hc.gvFamilyProtection'),
+                desc: t('whatsapp.hc.gvFamilyProtectionDesc'),
+              },
+              {
+                icon: <Clock className="w-6 h-6" />,
+                title: t('whatsapp.hc.gvFamilyNoSalary'),
+                desc: t('whatsapp.hc.gvFamilyNoSalaryDesc'),
+              },
+            ].map((item, index) => (
               <motion.div
-                key={benefit.title}
-                initial={{ opacity: 0, y: 30 }}
+                key={index}
+                className={`p-6 rounded-lg border transition-all duration-300 hover:border-gold ${
+                  item.hl
+                    ? 'bg-gold/10 border-gold shadow-lg shadow-gold/10'
+                    : 'bg-card border-gold/20'
+                }`}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="card-luxury p-6 text-center group"
               >
-                <div className="w-16 h-16 bg-gold/20 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/30 transition-colors duration-300">
-                  <benefit.icon className="w-8 h-8 text-gold" />
+                <div
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center text-gold mb-4 ${
+                    item.hl ? 'bg-gold/20' : 'bg-gold/10'
+                  }`}
+                >
+                  {item.icon}
                 </div>
-                <h3 className="text-xl font-serif font-bold text-gold mb-4">
-                  {benefit.title}
+                <h3
+                  className={`text-lg font-serif font-bold mb-2 ${
+                    item.hl ? 'text-gold' : 'text-text-primary'
+                  }`}
+                >
+                  {item.title}
                 </h3>
-                <p className="text-text-secondary leading-relaxed">
-                  {benefit.description}
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {item.desc}
                 </p>
               </motion.div>
             ))}
@@ -242,135 +374,219 @@ const GoldenVisa = () => {
         </div>
       </section>
 
-      {/* Eligibility Options */}
-      <section className="py-24 bg-card">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* ========== OFFICIAL CONTACTS ========== */}
+      <section className="py-20 bg-gradient-to-r from-gold/10 via-gold/5 to-transparent">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
           >
-            <h2 className="section-heading">Eligibility Pathways</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              Multiple routes to qualify for your UAE Golden Visa
+            <h2 className="section-heading">
+              {t('whatsapp.hc.gvContactTitle')}
+            </h2>
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+              {t('whatsapp.hc.gvContactSubtitle')}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {eligibilityOptions.map((option, index) => (
-              <motion.div
-                key={option.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`bg-background border rounded-xl p-8 relative ${
-                  option.recommended 
-                    ? 'border-gold shadow-2xl transform scale-105' 
-                    : 'border-white/10'
-                }`}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* GDRFA Dubai */}
+            <motion.div
+              className="card-luxury p-8 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center text-gold mx-auto mb-6">
+                <Phone size={28} />
+              </div>
+              <h3 className="text-xl font-serif font-bold text-gold mb-2">
+                {t('whatsapp.hc.gvContactGDRFA')}
+              </h3>
+              <p className="text-text-secondary text-sm mb-4">
+                {t('whatsapp.hc.gvContactGDRFADesc')}
+              </p>
+              <div className="space-y-2">
+                <p className="text-text-primary font-medium">
+                  {t('whatsapp.hc.gvContactTollFree')}:{' '}
+                  <a href="tel:8005111" className="text-gold hover:text-gold-light">
+                    800 5111
+                  </a>
+                </p>
+                <p className="text-text-primary font-medium">
+                  {t('whatsapp.hc.gvContactIntl')}:{' '}
+                  <a href="tel:+97143139999" className="text-gold hover:text-gold-light">
+                    +971 4 313 9999
+                  </a>
+                </p>
+                <p className="text-gold text-xs font-medium mt-2 bg-gold/10 rounded-full px-3 py-1 inline-block">
+                  {t('whatsapp.hc.gvContact247')}
+                </p>
+              </div>
+            </motion.div>
+
+            {/* ICP Federal */}
+            <motion.div
+              className="card-luxury p-8 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center text-gold mx-auto mb-6">
+                <Users size={28} />
+              </div>
+              <h3 className="text-xl font-serif font-bold text-gold mb-2">
+                {t('whatsapp.hc.gvContactICP')}
+              </h3>
+              <p className="text-text-secondary text-sm mb-4">
+                {t('whatsapp.hc.gvContactICPDesc')}
+              </p>
+              <p className="text-text-primary font-medium text-lg">
+                600 522 222
+              </p>
+              <a
+                href="https://icp.gov.ae"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold hover:text-gold-light text-sm mt-2 inline-block"
               >
-                {option.recommended && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gold text-background px-4 py-2 rounded-full text-sm font-medium">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
+                icp.gov.ae
+              </a>
+            </motion.div>
 
-                <div className="text-center mb-8">
-                  <div className={`w-20 h-20 rounded-xl flex items-center justify-center mx-auto mb-6 ${
-                    option.recommended ? 'bg-gold/30' : 'bg-gold/20'
-                  }`}>
-                    <option.icon className="w-10 h-10 text-gold" />
-                  </div>
-                  <h3 className="text-2xl font-serif font-bold text-gold mb-2">
-                    {option.title}
-                  </h3>
-                  <div className="text-xl font-bold text-text-primary mb-4">
-                    {option.amount}
-                  </div>
-                  <p className="text-text-secondary">
-                    {option.description}
-                  </p>
-                </div>
-
-                <div className="space-y-3">
-                  {option.requirements.map((requirement, idx) => (
-                    <div key={idx} className="flex items-start space-x-3">
-                      <CheckCircle className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
-                      <span className="text-text-secondary text-sm">
-                        {requirement}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+            {/* Official Portal */}
+            <motion.div
+              className="card-luxury p-8 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center text-gold mx-auto mb-6">
+                <Heart size={28} />
+              </div>
+              <h3 className="text-xl font-serif font-bold text-gold mb-2">
+                {t('whatsapp.hc.gvContactWebsite')}
+              </h3>
+              <p className="text-text-secondary text-sm mb-4">
+                {t('whatsapp.hc.gvContactWebsiteDesc')}
+              </p>
+              <div className="space-y-2">
+                <a
+                  href="https://gdrfad.gov.ae"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold hover:text-gold-light font-medium block"
+                >
+                  gdrfad.gov.ae
+                </a>
+                <a
+                  href="https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/golden-visa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold hover:text-gold-light font-medium block"
+                >
+                  u.ae
+                </a>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Process Timeline */}
-      <section className="py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* ========== PROCESS TIMELINE ========== */}
+      <section className="py-16 md:py-24 lg:py-32 bg-elevated">
+        <div className="max-w-4xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
             className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <h2 className="section-heading">Application Process</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              Step-by-step guide to securing your UAE Golden Visa
+            <h2
+              className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-text-primary mb-4"
+              style={{ letterSpacing: '0.15em' }}
+            >
+              {t('goldenVisa.process.title')}
+            </h2>
+            <div className="w-16 h-0.5 bg-gold mx-auto mb-6" />
+            <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              {t('goldenVisa.process.subtitle')}
             </p>
           </motion.div>
 
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-0.5 h-full w-0.5 bg-gold/30 hidden lg:block"></div>
-            
-            <div className="space-y-12 lg:space-y-16">
-              {process.map((step, index) => (
+            <div className="relative">
+              {/* Vertical gold line */}
+              <div
+                className="absolute left-6 md:left-8 top-0 bottom-0 w-px"
+                style={{
+                  background:
+                    'linear-gradient(to bottom, #c9a96e, rgba(201,169,110,0.3))',
+                }}
+              />
+
+              {processSteps.map((step, index) => (
                 <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  key={index}
+                  className="relative flex items-start mb-12 last:mb-0"
+                  style={{ paddingLeft: '4.5rem' }}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
                   viewport={{ once: true }}
-                  className={`flex flex-col lg:flex-row items-center ${
-                    index % 2 === 0 ? 'lg:flex-row-reverse' : ''
-                  }`}
                 >
-                  {/* Content */}
-                  <div className="w-full lg:w-5/12 mb-6 lg:mb-0">
-                    <div className={`bg-card p-6 rounded-xl border border-white/10 ${
-                      index % 2 === 0 ? 'lg:ml-8' : 'lg:mr-8'
-                    }`}>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="text-2xl font-serif font-bold text-gold">
-                          {step.title}
-                        </div>
-                        <span className="text-sm text-text-secondary bg-gold/10 px-3 py-1 rounded-full">
-                          {step.duration}
-                        </span>
+                  {/* Numbered circle */}
+                  <div
+                    className="absolute left-0 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center text-lg md:text-xl font-bold z-10"
+                    style={{
+                      background: index === 0 ? '#c9a96e' : '#1a1a2e',
+                      border: index === 0 ? 'none' : '2px solid #c9a96e',
+                      color: index === 0 ? '#1a1a2e' : '#c9a96e',
+                      boxShadow:
+                        index === 0
+                          ? '0 0 20px rgba(201,169,110,0.3)'
+                          : '',
+                    }}
+                  >
+                    {step.step}
+                  </div>
+
+                  {/* Step content */}
+                  <div
+                    className="flex-1 rounded-xl p-6"
+                    style={{
+                      background: 'rgba(201,169,110,0.05)',
+                      border: '1px solid rgba(201,169,110,0.15)',
+                    }}
+                  >
+                    <div className="flex items-center space-x-3 mb-3">
+                      <div
+                        className="w-10 h-10 rounded-lg flex items-center justify-center"
+                        style={{
+                          background: 'rgba(201,169,110,0.1)',
+                          color: '#c9a96e',
+                        }}
+                      >
+                        {step.icon}
                       </div>
-                      <p className="text-text-secondary">
-                        {step.description}
-                      </p>
+                      <h3
+                        className="text-xl font-serif font-bold"
+                        style={{ color: '#c9a96e' }}
+                      >
+                        {step.title}
+                      </h3>
                     </div>
+                    <p className="text-text-secondary leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
-
-                  {/* Timeline Dot */}
-                  <div className="hidden lg:flex w-16 h-16 bg-gold rounded-full border-4 border-card items-center justify-center flex-shrink-0 z-10">
-                    <span className="text-background font-bold text-lg">{step.step}</span>
-                  </div>
-
-                  {/* Spacer */}
-                  <div className="hidden lg:block w-5/12"></div>
                 </motion.div>
               ))}
             </div>
@@ -378,151 +594,122 @@ const GoldenVisa = () => {
         </div>
       </section>
 
-      {/* Required Documents */}
-      <section className="py-24 bg-card">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-8">
-                Required Documents
-              </h2>
-              <p className="text-text-secondary mb-8 leading-relaxed">
-                Ensure you have all necessary documentation prepared for a smooth Golden Visa application process. 
-                Our team will assist you in obtaining and verifying all required documents.
-              </p>
-              
-              <div className="bg-background border border-white/10 rounded-xl p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <FileText className="w-6 h-6 text-gold" />
-                  <h3 className="text-lg font-serif font-bold text-gold">
-                    Professional Support
-                  </h3>
-                </div>
-                <p className="text-text-secondary text-sm">
-                  Our expert team provides comprehensive document preparation and verification services 
-                  to ensure your application meets all requirements.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-background border border-white/10 rounded-xl p-8">
-                <h3 className="text-xl font-serif font-bold text-gold mb-6">
-                  Document Checklist
-                </h3>
-                <div className="space-y-4">
-                  {documents.map((document, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.05 }}
-                      viewport={{ once: true }}
-                      className="flex items-start space-x-3"
-                    >
-                      <CheckCircle className="w-5 h-5 text-gold mt-0.5 flex-shrink-0" />
-                      <span className="text-text-secondary text-sm">
-                        {document}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-24 bg-background">
-        <div className="max-w-4xl mx-auto px-4">
+      {/* ========== REQUIRED DOCUMENTS ========== */}
+      <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-r from-gold/10 via-gold/5 to-transparent">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="section-heading">Frequently Asked Questions</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              Common questions about the UAE Golden Visa process
-            </p>
-          </motion.div>
-
-          <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-card border border-white/10 rounded-xl p-6"
-              >
-                <h3 className="text-lg font-serif font-bold text-gold mb-4">
-                  {faq.question}
-                </h3>
-                <p className="text-text-secondary leading-relaxed">
-                  {faq.answer}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            className="max-w-4xl mx-auto text-center"
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-4">
-              Start Your Golden Visa Journey Today
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-6">
+              {t('whatsapp.hc.reqDocs')}
             </h2>
-            <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-              Let our Golden Visa specialists guide you through the entire process, from property selection to visa issuance.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => setIsContactModalOpen(true)}
-                className="btn-gold-solid"
-              >
-                Free Consultation
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
-              <a
-                href="tel:+971545535505"
-                className="btn-gold"
-              >
-                Call Expert: +971 54 553 5505
-              </a>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+              {/* Personal Documents */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-serif font-bold text-text-primary mb-4">
+                  {t('whatsapp.hc.personalDocs')}
+                </h3>
+                {[
+                  t('whatsapp.hc.gvDocPassport'),
+                  t('whatsapp.hc.gvDocPhotos'),
+                  t('whatsapp.hc.gvDocMedical'),
+                  t('whatsapp.hc.gvDocPolice'),
+                ].map((doc, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start space-x-3 p-3 rounded-lg"
+                    style={{
+                      background: 'rgba(201,169,110,0.05)',
+                      border: '1px solid rgba(201,169,110,0.08)',
+                    }}
+                  >
+                    <FileText
+                      className="flex-shrink-0 mt-0.5"
+                      style={{ color: '#c9a96e' }}
+                      size={20}
+                    />
+                    <span className="text-text-secondary leading-relaxed">
+                      {doc}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Financial Documents */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-serif font-bold text-text-primary mb-4">
+                  {t('whatsapp.hc.financialDocs')}
+                </h3>
+                {[
+                  t('whatsapp.hc.gvDocInvestment'),
+                  t('whatsapp.hc.gvDocBank'),
+                  t('whatsapp.hc.gvDocInsurance'),
+                  t('whatsapp.hc.gvDocForms'),
+                ].map((doc, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start space-x-3 p-3 rounded-lg"
+                    style={{
+                      background: 'rgba(201,169,110,0.05)',
+                      border: '1px solid rgba(201,169,110,0.08)',
+                    }}
+                  >
+                    <FileText
+                      className="flex-shrink-0 mt-0.5"
+                      style={{ color: '#c9a96e' }}
+                      size={20}
+                    />
+                    <span className="text-text-secondary leading-relaxed">
+                      {doc}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className="text-xs text-text-secondary mt-4">
-              Expert consultation • No obligation • Confidential
-            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Modal */}
-      <ContactModal 
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-      />
+      {/* ========== CTA ========== */}
+      <motion.section
+        className="py-20 bg-background"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-6">
+            {t('goldenVisa.cta.title')}
+          </h2>
+          <p className="text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
+            {t('goldenVisa.cta.subtitle')}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contacto"
+              className="btn-gold-solid text-lg px-8 py-4 inline-flex items-center space-x-2"
+            >
+              <span>{t('goldenVisa.cta.button')}</span>
+              <ArrowRight size={18} />
+            </Link>
+            <a
+              href="https://wa.me/971585821144"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold text-lg px-8 py-4 inline-flex items-center space-x-2"
+            >
+              <MessageCircle size={18} />
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </motion.section>
     </div>
   );
 };
