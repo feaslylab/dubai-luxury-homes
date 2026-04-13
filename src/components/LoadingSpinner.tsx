@@ -11,7 +11,7 @@ const LoadingSpinner = () => {
         transition={{
           duration: 1,
           repeat: Infinity,
-          ease: "linear",
+          ease: 'linear',
         }}
         className="w-12 h-12 border-3 border-gold/30 border-t-gold rounded-full"
       />
