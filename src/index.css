@@ -89,8 +89,18 @@
   }
 
   .section-heading::after {
-    content: "";
-    @apply block w-24 h-1 bg-gradient-to-r from-gold to-gold-light mx-auto mt-4;
+    content: '';
+    display: block;
+    height: 2px;
+    background: #c4a265;
+    margin: 0.75rem auto 0;
+    width: 0;
+    animation: underline-grow 0.6s ease-out forwards;
+    animation-play-state: paused;
+  }
+
+  .section-heading.in-view::after {
+    animation-play-state: running;
   }
 
   /* luxury-image — matches old compiled CSS exactly */
@@ -118,5 +128,18 @@
 
   .prose a {
     @apply text-gold transition-colors duration-300 hover:text-gold-light;
+  }
+}
+
+@keyframes underline-grow {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

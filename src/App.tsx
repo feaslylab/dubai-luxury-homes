@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ContactPopup from './components/ContactPopup';
@@ -15,6 +16,16 @@ const Blog = React.lazy(() => import('./pages/Blog'));
 const BlogDetail = React.lazy(() => import('./pages/BlogDetail'));
 const Contact = React.lazy(() => import('./pages/Contact'));
 
+const PageTransition = ({ children }: { children: React.ReactNode }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.25, 0.4, 0.25, 1] } }}
+    exit={{ opacity: 0, y: -20, transition: { duration: 0.2 } }}
+  >
+    {children}
+  </motion.div>
+);
+
 const ScrollToTop = () => {
   const location = useLocation();
   useEffect(() => {
@@ -24,6 +35,8 @@ const ScrollToTop = () => {
 };
 
 function App() {
+  const location = useLocation();
+
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
   }, []);
@@ -32,18 +45,20 @@ function App() {
     <div className="App bg-background min-h-screen">
       <Navbar />
       <main>
-        <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/sobre-nosotros" element={<About />} />
-            <Route path="/servicios" element={<Services />} />
-            <Route path="/propiedades" element={<Properties />} />
-            <Route path="/golden-visa" element={<GoldenVisa />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogDetail />} />
-            <Route path="/contacto" element={<Contact />} />
-          </Routes>
-        </Suspense>
+        <AnimatePresence mode="wait">
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+              <Route path="/sobre-nosotros" element={<PageTransition><About /></PageTransition>} />
+              <Route path="/servicios" element={<PageTransition><Services /></PageTransition>} />
+              <Route path="/propiedades" element={<PageTransition><Properties /></PageTransition>} />
+              <Route path="/golden-visa" element={<PageTransition><GoldenVisa /></PageTransition>} />
+              <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+              <Route path="/blog/:slug" element={<PageTransition><BlogDetail /></PageTransition>} />
+              <Route path="/contacto" element={<PageTransition><Contact /></PageTransition>} />
+            </Routes>
+          </Suspense>
+        </AnimatePresence>
       </main>
       <Footer />
       <WhatsAppButton />
