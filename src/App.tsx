@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ContactPopup from './components/ContactPopup';
+import WhatsAppButton from './components/WhatsAppButton';
 import LoadingSpinner from './components/LoadingSpinner';
 
 const Home = React.lazy(() => import('./pages/Home'));
@@ -45,6 +46,7 @@ function App() {
         </Suspense>
       </main>
       <Footer />
+      <WhatsAppButton />
       <ContactPopup />
       <ScrollToTop />
     </div>
