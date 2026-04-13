@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { fadeUp, scaleIn, staggerContainer, hoverLift, viewportOnce } from '../utils/animations';
 import {
   Home,
   Building2,
@@ -171,14 +172,14 @@ const Services = () => {
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              variants={fadeUp}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportOnce}
             >
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gold mb-6">
+              <motion.h2 className="text-4xl md:text-5xl font-serif font-bold text-gold mb-6" style={{ transformOrigin: 'center' }} initial={{ opacity: 0, y: 20, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.6 }} viewport={viewportOnce}>
                 {category.title}
-              </h2>
+              </motion.h2>
               <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
                 {category.description}
               </p>
@@ -186,20 +187,17 @@ const Services = () => {
 
             <motion.div
               className="grid grid-cols-1 md:grid-cols-2 gap-8"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, staggerChildren: 0.2 }}
-              viewport={{ once: true }}
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportOnce}
             >
               {category.services.map((service, index) => (
                 <motion.div
                   key={index}
                   className="card-luxury overflow-hidden group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
+                  variants={fadeUp}
+                  whileHover={hoverLift}
                 >
                   <div className="relative overflow-hidden">
                     <img
@@ -253,19 +251,18 @@ const Services = () => {
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-4 gap-8"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, staggerChildren: 0.2 }}
-            viewport={{ once: true }}
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             {processSteps.map((step, index) => (
               <motion.div
                 key={index}
                 className="text-center group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={index}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
               >
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gold text-background rounded-full text-2xl font-serif font-bold mb-6 group-hover:scale-110 transition-transform duration-300">
                   {step.step}

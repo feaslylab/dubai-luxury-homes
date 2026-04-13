@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { fadeUp, slideLeft, slideRight, scaleIn, springUp, staggerContainer, hoverLift, viewportOnce } from '../utils/animations';
 import {
   Clock,
   Users,
@@ -174,20 +175,16 @@ const GoldenVisa = () => {
 
           <motion.div
             className="max-w-lg mx-auto"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, staggerChildren: 0.2 }}
-            viewport={{ once: true }}
+            variants={springUp}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             {investmentRoutes.map((route, index) => (
               <motion.div
                 key={index}
                 className="card-luxury p-8 text-center group relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
+                whileHover={hoverLift}
               >
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${route.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
@@ -235,19 +232,16 @@ const GoldenVisa = () => {
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, staggerChildren: 0.1 }}
-            viewport={{ once: true }}
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
                 className="flex items-start space-x-4 p-6 bg-card border border-gold/20 rounded-lg hover:border-gold transition-all duration-300"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
+                variants={scaleIn}
               >
                 <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center text-gold">
                   {benefit.icon}
@@ -284,7 +278,7 @@ const GoldenVisa = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={viewportOnce}>
             {[
               {
                 icon: <CheckCircle className="w-8 h-8" />,
@@ -325,10 +319,7 @@ const GoldenVisa = () => {
                     ? 'bg-gold/10 border-gold shadow-lg shadow-gold/10'
                     : 'bg-card border-gold/20'
                 }`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                viewport={{ once: true }}
+                variants={fadeUp}
               >
                 <div
                   className={`w-12 h-12 rounded-lg flex items-center justify-center text-gold mb-4 ${
@@ -349,7 +340,7 @@ const GoldenVisa = () => {
                 </p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -391,10 +382,10 @@ const GoldenVisa = () => {
                   key={index}
                   className="relative flex items-start mb-12 last:mb-0"
                   style={{ paddingLeft: '4.5rem' }}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.15 }}
-                  viewport={{ once: true }}
+                  variants={index % 2 === 0 ? slideLeft : slideRight}
+                  initial="initial"
+                  whileInView="whileInView"
+                  viewport={viewportOnce}
                 >
                   {/* Numbered circle */}
                   <div

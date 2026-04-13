@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer, hoverLift, viewportOnce } from '../utils/animations';
 import { ArrowLeft, ArrowRight, Tag, Clock, User, Calendar, MessageCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -224,9 +225,9 @@ const BlogDetail = () => {
         <div className="container mx-auto px-4">
           <motion.div
             className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            variants={fadeUp}
+            initial="initial"
+            animate="whileInView"
           >
             <div
               className="prose prose-lg max-w-none text-text-secondary leading-relaxed"
@@ -282,24 +283,21 @@ const BlogDetail = () => {
         <div className="container mx-auto px-4">
           <motion.div
             className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            variants={fadeUp}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             <h2 className="text-3xl font-serif font-bold text-gold mb-8 text-center">
               {t('whatsapp.hc.relatedArticles')}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={viewportOnce}>
               {relatedSlugs.map((related, idx) => (
                 <motion.div
                   key={related.slug}
                   className="card-luxury overflow-hidden group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
+                  variants={fadeUp}
+                  whileHover={hoverLift}
                 >
                   <div className="relative overflow-hidden">
                     <img
@@ -322,7 +320,7 @@ const BlogDetail = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

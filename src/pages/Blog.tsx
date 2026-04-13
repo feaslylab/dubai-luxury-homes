@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { fadeUp, springUp, staggerContainer, hoverLift, viewportOnce } from '../utils/animations';
 import { ArrowRight, Tag, Clock, User, Calendar } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -143,9 +144,9 @@ const Blog = () => {
         <div className="container mx-auto px-4">
           <motion.div
             className="flex flex-wrap justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
           >
             {categories.map((cat) => (
               <button
@@ -174,10 +175,10 @@ const Blog = () => {
         <div className="container mx-auto px-4">
           <motion.div
             className="mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            variants={springUp}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-8 text-center">
               {t('whatsapp.hc.featuredArticle')}
@@ -240,20 +241,17 @@ const Blog = () => {
         <div className="container mx-auto px-4">
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, staggerChildren: 0.2 }}
-            viewport={{ once: true }}
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             {filteredPosts.slice(1).map((post, idx) => (
               <motion.article
                 key={post.slug}
                 className="card-luxury overflow-hidden group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
+                variants={fadeUp}
+                whileHover={hoverLift}
               >
                 <div className="relative overflow-hidden">
                   <img

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { scaleIn, slideLeft, slideRight, staggerContainer, hoverLift, viewportOnce } from '../utils/animations';
 import {
   Phone,
   Mail,
@@ -120,16 +121,15 @@ const Contact = () => {
       {/* Quick Actions */}
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={viewportOnce}>
             {quickActions.map((action, index) => (
               <motion.a
                 key={action.title}
                 href={action.href}
                 target={action.href.startsWith('http') ? '_blank' : '_self'}
                 rel={action.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                variants={scaleIn}
+                whileHover={hoverLift}
                 className="card-luxury p-6 text-center group block"
               >
                 <div className={`w-16 h-16 bg-gradient-to-br ${action.color} rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
@@ -146,7 +146,7 @@ const Contact = () => {
                 </span>
               </motion.a>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -156,10 +156,10 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              variants={slideLeft}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportOnce}
             >
               <div className="bg-background border border-white/10 rounded-2xl p-8">
                 <h2 className="text-3xl font-serif font-bold text-gold mb-6">
@@ -289,10 +289,10 @@ const Contact = () => {
 
             {/* Contact Information */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
+              variants={slideRight}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportOnce}
             >
               <div className="space-y-8">
                 <div>

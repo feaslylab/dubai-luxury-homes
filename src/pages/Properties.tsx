@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { fadeUp, staggerContainer, hoverLift, viewportOnce } from '../utils/animations';
 import {
   MapPin,
   Bed,
@@ -219,9 +220,9 @@ const Properties = () => {
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="flex flex-col lg:flex-row gap-6 items-center justify-between"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
           >
             <div className="flex items-center space-x-2">
               <Filter className="text-gold" size={20} />
@@ -276,18 +277,17 @@ const Properties = () => {
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, staggerChildren: 0.1 }}
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             {filteredProperties.map((property, index) => (
               <motion.div
                 key={property.id}
                 className="card-luxury overflow-hidden group relative"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
+                variants={fadeUp}
+                whileHover={hoverLift}
               >
                 {property.featured && (
                   <div className="absolute top-4 left-4 bg-gold text-background px-3 py-1 rounded-full text-sm font-bold z-10">
@@ -392,16 +392,13 @@ const Properties = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={viewportOnce}>
             {investmentCategories.map((cat, index) => (
               <motion.div
                 key={index}
                 className="card-luxury overflow-hidden group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8 }}
+                variants={fadeUp}
+                whileHover={hoverLift}
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -428,7 +425,7 @@ const Properties = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 

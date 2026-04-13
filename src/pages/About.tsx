@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Award, Globe, Shield, Settings, Star, Clock, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { fadeUp, slideLeft, slideRight, scaleIn, springUp, staggerContainer, hoverLift, viewportOnce } from '../utils/animations';
 
 function assetPath(path: string) {
   return `/dubai-luxury-homes/${path.startsWith('/') ? path.slice(1) : path}`;
@@ -56,9 +57,9 @@ const About = () => {
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={springUp}
+            initial="initial"
+            animate="whileInView"
             className="font-serif font-bold text-gold mb-6 font-serif font-bold mb-6 text-gold"
             style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
           >
@@ -76,10 +77,10 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               className="relative"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              variants={slideLeft}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportOnce}
             >
               <img
                 src={assetPath('images/about-mission.jpg')}
@@ -90,10 +91,10 @@ const About = () => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              variants={slideRight}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={viewportOnce}
             >
               <h2 className="section-heading !text-left">{t('about.mission.title')}</h2>
               <p className="text-lg text-text-secondary leading-relaxed mb-6">
@@ -122,19 +123,16 @@ const About = () => {
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, staggerChildren: 0.2 }}
-            viewport={{ once: true }}
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             {whyUsItems.map((item, index) => (
               <motion.div
                 key={index}
                 className="text-center group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                variants={scaleIn}
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-card border border-gold/20 rounded-full text-gold mb-6 group-hover:bg-gold group-hover:text-background transition-all duration-300">
                   {item.icon}
@@ -152,19 +150,16 @@ const About = () => {
         <div className="container mx-auto px-4">
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, staggerChildren: 0.1 }}
-            viewport={{ once: true }}
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={viewportOnce}
           >
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
                 className="text-center"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                variants={scaleIn}
               >
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-gold/20 rounded-full text-gold mb-4">
                   {stat.icon}
@@ -197,9 +192,10 @@ const About = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-10" variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={viewportOnce}>
             {/* International Experience */}
             <motion.div
+              variants={scaleIn}
               style={{
                 background: 'rgba(196,162,101,0.05)',
                 border: '1px solid rgba(196,162,101,0.2)',
@@ -207,8 +203,7 @@ const About = () => {
                 padding: '48px 32px',
                 textAlign: 'center',
               }}
-              whileHover={{ y: -8, borderColor: 'rgba(196,162,101,0.5)' }}
-              transition={{ duration: 0.3 }}
+              whileHover={hoverLift}
             >
               <div
                 style={{
@@ -242,6 +237,7 @@ const About = () => {
 
             {/* Personalised Service */}
             <motion.div
+              variants={scaleIn}
               style={{
                 background: 'rgba(196,162,101,0.05)',
                 border: '1px solid rgba(196,162,101,0.2)',
@@ -249,8 +245,7 @@ const About = () => {
                 padding: '48px 32px',
                 textAlign: 'center',
               }}
-              whileHover={{ y: -8, borderColor: 'rgba(196,162,101,0.5)' }}
-              transition={{ duration: 0.3 }}
+              whileHover={hoverLift}
             >
               <div
                 style={{
@@ -284,6 +279,7 @@ const About = () => {
 
             {/* Total Transparency */}
             <motion.div
+              variants={scaleIn}
               style={{
                 background: 'rgba(196,162,101,0.05)',
                 border: '1px solid rgba(196,162,101,0.2)',
@@ -291,8 +287,7 @@ const About = () => {
                 padding: '48px 32px',
                 textAlign: 'center',
               }}
-              whileHover={{ y: -8, borderColor: 'rgba(196,162,101,0.5)' }}
-              transition={{ duration: 0.3 }}
+              whileHover={hoverLift}
             >
               <div
                 style={{
@@ -323,7 +318,7 @@ const About = () => {
                 {t('whatsapp.hc.valTrustDesc')}
               </p>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
