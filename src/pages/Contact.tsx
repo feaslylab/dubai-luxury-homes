@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  MapPin,
   Phone,
   Mail,
-  Clock,
   Send,
   MessageSquare,
   Calendar,
@@ -42,14 +40,6 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: MapPin,
-      title: 'Office Location',
-      primary: 'Business Bay, Dubai',
-      secondary: 'United Arab Emirates',
-      action: 'Get Directions',
-      href: 'https://maps.google.com/?q=Business+Bay+Dubai'
-    },
-    {
       icon: Phone,
       title: 'Phone Number',
       primary: '+971 54 553 5505',
@@ -65,14 +55,6 @@ const Contact = () => {
       action: 'Send Email',
       href: 'mailto:info@dubailuxuryhomes.com'
     },
-    {
-      icon: Clock,
-      title: 'Office Hours',
-      primary: 'Sunday - Thursday',
-      secondary: '9:00 AM - 6:00 PM GST',
-      action: 'Schedule Meeting',
-      href: '#'
-    }
   ];
 
   const services = [
@@ -361,77 +343,9 @@ const Contact = () => {
                   ))}
                 </div>
 
-                {/* Office Image */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="relative"
-                >
-                  <img
-                    src="/dubai-luxury-homes/images/business-bay-office.jpg"
-                    alt="Puerta del Sol Real Estate Office in Business Bay"
-                    className="luxury-image w-full h-64 rounded-xl"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <p className="text-sm font-medium">Our Office</p>
-                    <p className="text-xs opacity-90">Business Bay, Dubai</p>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gold mb-4">
-              Visit Our Office
-            </h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              Located in the heart of Business Bay, we're easily accessible from all major areas of Dubai
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="bg-card border border-white/10 rounded-2xl overflow-hidden"
-          >
-            <div className="h-96 bg-gradient-to-br from-gold/20 to-gold-light/20 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="w-16 h-16 text-gold mx-auto mb-4" />
-                <h3 className="text-xl font-serif font-bold text-gold mb-2">
-                  Business Bay, Dubai
-                </h3>
-                <p className="text-text-secondary mb-4">
-                  {t('whatsapp.hc.uae')}
-                </p>
-                <a
-                  href="https://maps.google.com/?q=Business+Bay+Dubai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-gold inline-flex items-center"
-                >
-                  <MapPin className="w-4 h-4 mr-2" />
-                  {t('whatsapp.hc.viewMaps')}
-                </a>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
