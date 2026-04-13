@@ -7,7 +7,6 @@ import {
   ChevronRight,
   Clock,
   MessageCircle,
-  TrendingUp,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -95,10 +94,10 @@ const Home: React.FC = () => {
 
   /* ---- Investment categories ---- */
   const categories = [
-    { key: 'catEntry', price: 'USD 250K', areas: 'whatsapp.hc.catEntryAreas', yield: '7-9%', image: 'cat-under250k.jpg' },
-    { key: 'catPremium', price: 'USD 250K - 2M', areas: 'whatsapp.hc.catPremiumAreas', yield: '5-7%', image: 'cat-under2m.jpg' },
-    { key: 'catLuxury', price: 'USD 2M - 6M', areas: 'whatsapp.hc.catLuxuryAreas', yield: '4-6%', image: 'cat-2to6m.jpg' },
-    { key: 'catUltra', price: 'USD 6M+', areas: 'whatsapp.hc.catUltraAreas', yield: '3-5%', image: 'cat-over6m.jpg' },
+    { key: 'catEntry', price: 'USD 250K', areas: 'whatsapp.hc.catEntryAreas', image: 'cat-under250k.jpg' },
+    { key: 'catPremium', price: 'USD 250K - 2M', areas: 'whatsapp.hc.catPremiumAreas', image: 'cat-under2m.jpg' },
+    { key: 'catLuxury', price: 'USD 2M - 6M', areas: 'whatsapp.hc.catLuxuryAreas', image: 'cat-2to6m.jpg' },
+    { key: 'catUltra', price: 'USD 6M+', areas: 'whatsapp.hc.catUltraAreas', image: 'cat-over6m.jpg' },
   ];
 
   /* ---- Services (first 6) ---- */
@@ -309,13 +308,9 @@ const Home: React.FC = () => {
                   <p className="text-text-secondary text-sm leading-relaxed mb-3">
                     {t(`whatsapp.hc.${cat.key}Desc`)}
                   </p>
-                  <p className="text-xs text-text-secondary/70 mb-3">
+                  <p className="text-xs text-text-secondary/70">
                     {t(`whatsapp.hc.${cat.key}Areas`)}
                   </p>
-                  <div className="flex items-center gap-1 text-gold text-sm font-semibold">
-                    <TrendingUp className="w-4 h-4" />
-                    {cat.yield} ROI
-                  </div>
                 </div>
               </motion.div>
             ))}

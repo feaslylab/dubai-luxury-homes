@@ -16,9 +16,9 @@ const resources = {
       },
       home: {
         hero: {
-          title: 'Inversión Inmobiliaria Premium en Dubái',
+          title: 'Inversión Inmobiliaria con Alta Rentabilidad en Dubái',
           subtitle:
-            'Inversiones inmobiliarias de grado institucional con 0% de impuestos sobre rendimientos. Activos de alto valor para inversores globales exigentes.',
+            'Descubre propiedades estratégicas con cero impuestos y oportunidades de alto valor para inversores globales exigentes.',
         },
         about: {
           title: 'Maestros de la Inversión de Alto Valor',
@@ -583,9 +583,9 @@ const resources = {
       },
       home: {
         hero: {
-          title: 'Premium Dubai Real Estate Investment',
+          title: 'High-Return Real Estate Investment in Dubai',
           subtitle:
-            'Institutional-grade property investment with guaranteed 0% tax on returns. High-value assets for discerning global investors.',
+            'Discover strategic properties with zero tax and high-value opportunities for discerning global investors.',
         },
         about: {
           title: 'Masters of High-Value Investment',
