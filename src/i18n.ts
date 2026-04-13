@@ -1143,10 +1143,12 @@ const resources = {
   },
 };
 
+const browserLang = navigator.language?.startsWith('es') ? 'es' : 'en';
+
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'es',
-  fallbackLng: 'en',
+  lng: browserLang,
+  fallbackLng: 'es',
   interpolation: {
     escapeValue: false,
   },
